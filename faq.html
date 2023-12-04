@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - Your Travel Partner</title>
+  
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+   
+    .faq-container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 18px;
+      font-weight: bold;
+      color: #3498db;
+      cursor: pointer;
+    }
+
+    .answer {
+      font-size: 16px;
+      color: #555;
+      display: none;
+    }
+
+    .expand-icon {
+      font-size: 20px;
+      margin-left: 5px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .expanded {
+      transform: rotate(90deg);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .faq-container {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
+        <div class="row gx-0">
+            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center" style="height: 45px;">
+                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>4-A,Sector 19, Dwarka,New Delhi</small>
+                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+91 9555255334</small>
+                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>info@katchintech.com</small>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <div class="d-inline-flex align-items-center" style="height: 45px;">
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar & Hero Start -->
+
+
+<div class="faq-container">
+    <div class="faq-item"><h1>FAQ</h1></div>
+  <div class="faq-item">
+    <div class="question" onclick="toggleAnswer('answer1')">
+      How do I book a tour package? <br>
+     View <span class="expand-icon">&#9654;</span>
+    </div>
+    <div id="answer1" class="answer">
+      Booking a tour package is easy! Simply navigate to our website, choose your desired destination, select a package, and follow the booking instructions provided. You can also contact our customer support for assistance.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question" onclick="toggleAnswer('answer2')">
+      Are flights included in the packages?<br>
+      View<span class="expand-icon">&#9654;</span>
+    </div>
+    <div id="answer2" class="answer">
+      In most cases, tour packages include accommodation, transportation, and guided tours. However, specific inclusions may vary. Check the details of each package or contact us for information about what is included in a particular tour.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question" onclick="toggleAnswer('answer3')">
+      Can I customize my tour itinerary?<br>
+      View <span class="expand-icon">&#9654;</span>
+    </div>
+    <div id="answer3" class="answer">
+      Yes, we offer customizable tour packages! Contact our team to discuss your preferences, and we'll work with you to create a personalized itinerary that suits your interests and schedule.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question" onclick="toggleAnswer('answer4')">
+      What payment methods do you accept?<br>
+      View  <span class="expand-icon">&#9654;</span>
+    </div>
+    <div id="answer4" class="answer">
+      We accept various payment methods, including credit/debit cards and online transfers. The available options will be displayed during the booking process. For more details or alternative payment methods, feel free to contact our customer support.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="question" onclick="toggleAnswer('answer5')">
+      Is travel insurance included in the packages?<br>
+      View   <span class="expand-icon">&#9654;</span>
+    </div>
+    <div id="answer5" class="answer">
+      Travel insurance is not automatically included in our packages. However, we highly recommend purchasing travel insurance for added peace of mind. You can inquire about insurance options during the booking process or contact us for assistance.
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+
+
+<!-- Template Javascript -->
+<script src="js/main.js">
+</script>
+<script>
+  function toggleAnswer(answerId) {
+    const answer = document.getElementById(answerId);
+    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+
+    const expandIcon = answer.previousElementSibling.querySelector('.expand-icon');
+    expandIcon.classList.toggle('expanded');
+  }
+</script>
+
+</body>
+</html>
