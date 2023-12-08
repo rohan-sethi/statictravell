@@ -92,3 +92,148 @@
     
 })(jQuery);
 
+
+
+//  togle redmore funcanlity
+function toggleModal(modalId) {
+    console.log("hello world ")
+    var modal = document.getElementById(modalId);
+    var modals = document.querySelectorAll('.modal_2');
+
+    modals.forEach(function(m) {
+        m.style.display = 'none';
+    });
+
+    // Open or close the clicked modal
+    modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+}
+
+// Function to close the modal
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function(event) {
+    var modals = document.querySelectorAll('.modal_2');
+    modals.forEach(function(modal) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+};
+
+//  contact form validation  
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('contactForm');
+
+        // cleare event prvennt default if user  submit empty form 
+        form?.addEventListener('submit', function (event) {
+            if (!validateForm()) {
+                event.preventDefault();
+            }
+        });
+
+        // form validtion 
+        function validateForm() {
+           let name = document.getElementById('name');
+           let email = document.getElementById('email');
+           let subject = document.getElementById('subject');
+           let message = document.getElementById('message');
+
+            if (name.value.trim() === '') {
+                showError(name, 'Please enter your name.');
+                return false;
+            } else {
+                hideError(name);
+            }
+
+            if (email.value.trim() === '') {
+                showError(email, 'Please enter your email.');
+                return false;
+            } else if (!isValidEmail(email.value)) {
+                showError(email, 'Please enter a valid email address.');
+                return false;
+            } else {
+                hideError(email);
+            }
+
+            if (subject.value.trim() === '') {
+                showError(subject, 'Please enter the subject.');
+                return false;
+            } else {
+                hideError(subject);
+            }
+
+            if (message.value.trim() === '') {
+                showError(message, 'Please enter your message.');
+                return false;
+            } else {
+                hideError(message);
+            }
+
+            return true;
+        }
+
+        function isValidEmail(email) {
+           let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+     // functio for show error message 
+      function showError(input, errorMessage) {
+       let parent = input.parentElement;
+       let errorElement = parent.querySelector('.error-message');
+
+            if (!errorElement) {
+                errorElement = document.createElement('div');
+                errorElement.className = 'error-message';
+                parent.appendChild(errorElement);
+            }
+
+            errorElement.innerText = errorMessage;
+        }
+
+    // hiding error input when user add value in input box
+
+    function hideError(input) {
+        let parent = input.parentElement;
+        let errorElement = parent.querySelector('.error-message');
+    
+        if (errorElement) {
+            // errorElement.innerText = '';
+            input.addEventListener('input', function () {
+                errorElement.style.display = 'none'; 
+            });
+        }
+    }
+    });
+
+
+    //  register user  modal screen 
+    function openModal() {
+        var modal = document.getElementById('modalRegisterForm');
+
+        $(modal).modal('show'); 
+        $('.modal-backdrop').removeClass("modal-backdrop");
+      }
+    
+      document.getElementById('registerButton')?.addEventListener('click', openModal);
+
+      function submitFormAndCloseModal() {
+    
+        $('#modalRegisterForm').modal('hide');
+      }
+
+      function CloseModal(){
+        $('#modalRegisterForm').modal('hide')
+      }
+
+      $("input").focus(function(){
+        $(this).siblings(".error-message").hide();
+     });
+     $('datetimepicker').datetimepicker('clear');
+     //$('datetimepicker').datetimepicker('destroy');
+    
+
+      

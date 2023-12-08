@@ -1,4 +1,7 @@
-  =>  Template Name    : Tourist - Travel Agency HTML Template
+  =>  Template Name    : Tour and Travels
+
+
+
 
   =>  Template Link    : https://htmlcodex.com/travel-agency-html-template
 

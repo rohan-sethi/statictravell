@@ -4,7 +4,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Tourist - Travel Agency HTML Template</title>
+    <title>Tour and Travels</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -108,7 +108,7 @@
                     </div> -->
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
+                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
             </div>
         </nav>
 
@@ -184,7 +184,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3 h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-globe text-primary mb-4"></i>
                             <h5>WorldWide Tours</h5>
@@ -193,7 +193,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3  h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
                             <h5>Hotel Reservation</h5>
@@ -202,7 +202,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3 h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-user text-primary mb-4"></i>
                             <h5>Travel Guides</h5>
@@ -211,7 +211,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3 h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-cog text-primary mb-4"></i>
                             <h5>Event Management</h5>
@@ -220,7 +220,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3  h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-globe text-primary mb-4"></i>
                             <h5>Cruise Experiences</h5>
@@ -229,7 +229,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3  h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
                             <h5>Adventure Escapes</h5>
@@ -238,7 +238,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3  h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-user text-primary mb-4"></i>
                             <h5>Exclusive Packages</h5>
@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item rounded pt-3">
+                    <div class="service-item rounded pt-3  h-100">
                         <div class="p-4">
                             <i class="fa fa-3x fa-cog text-primary mb-4"></i>
                             <h5>Wellness Retreats</h5>
@@ -316,7 +316,7 @@
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="package-item">
+                    <div class="package-item h-100 position-relative">
                         <div class="overflow-hidden">
                             <img class="img-fluid" src="img/package-1.jpg" alt="">
                         </div>
@@ -334,16 +334,28 @@
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
                             </div>
-                            <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.</p>
+                            <p id="description0">Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive .</p>
+
                             <div class="d-flex justify-content-center mb-2">
-                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;"  onclick="toggleModal('descriptionModal0')">Read More</a>
+                                <a class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            </div>
+
+                            <div id="descriptionModal0" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal0')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none; text-align: left;">
+                                    
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+                 
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="package-item">
+                    <div class="package-item h-100 position-relative">
                         <div class="overflow-hidden">
                             <img class="img-fluid" src="img/package-2.jpg" alt="">
                         </div>
@@ -361,16 +373,27 @@
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
                             </div>
-                            <p>Explore the diverse beauty of Indonesia. Whether it's the vibrant energy of Bali or cultural richness in Yogyakarta, our package promises an unforgettable journey.</p>
+                            <p  id="description1">Explore the diverse beauty of Indonesia. Whether it's the vibrant energy of Bali or cultural richness in Yogyakarta, our package promises an unforgettable journey.</p>
                             <div class="d-flex justify-content-center mb-2">
-                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a data-card="1"  class="btn btn-sm btn-primary px-3 border-end read-more-btn" style="border-radius: 30px 0 0 30px;" id="readMoreBtn"  onclick="toggleModal('descriptionModal1')" >Read More</a>
+                                <a class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            </div>
+
+                            <div id="descriptionModal1" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal1')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none;text-align: left;">
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+                    
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="package-item">
+                    <div class="package-item h-100 position-relative">
                         <div class="overflow-hidden">
                             <img class="img-fluid" src="img/package-3.jpg" alt="">
                         </div>
@@ -388,12 +411,22 @@
                                 <small class="fa fa-star text-primary"></small>
                                 <small class="fa fa-star text-primary"></small>
                             </div>
-                            <p>Escape to the spiritual haven of Rishikesh, nestled in the Himalayas. Immerse yourself in Rafting, yoga, meditation, and thrilling river rafting for a harmonious and adventurous retreat.</p>
+                            <p  id="description2">Escape to the spiritual haven of Rishikesh, nestled in the Himalayas. Immerse yourself in Rafting, yoga, meditation, and thrilling river rafting for a harmonious and adventurous retreat.</p>
                             <div class="d-flex justify-content-center mb-2">
-                                <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a  class="btn btn-sm btn-primary px-3 border-end read-more-btn" style="border-radius: 30px 0 0 30px;" id="readMoreBtn"  onclick="toggleModal('descriptionModal2')">Read More</a>
+                                <a class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            </div>
+                            <div id="descriptionModal2" class="modal_2" style="border: none;">
+                                <div class="text-lg-end " style="width: 100%; padding-right: 10px; cursor: pointer;">
+                                    <span class="close-btn" onclick="closeModal('descriptionModal2')" style="font-size: 30px;">&times;</span>
+                                </div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1 ml-2 mr-2" style="border:none; text-align: left; margin-left:10px; margin-right:10px ">
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+                                </div>
                             </div>
                         </div>
+               
                     </div>
                 </div>
             </div>
@@ -401,18 +434,41 @@
     </div>
     <!-- Package End -->
 
+   
+    
 
     <!-- Booking Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="booking p-5">
+            <div class="booking p-5 ">
                 <div class="row g-5 align-items-center">
-                    <div class="col-md-6 text-white">
+                    <div class="col-md-6 text-white  position-relative">
                         <h6 class="text-white text-uppercase">Booking</h6>
                         <h1 class="text-white mb-4">Online Booking</h1>
-                        <p class="mb-4">Discover the convenience of online booking with us. Streamlined processes ensure a seamless experience. Dive into comfort and ease as you explore our services. Experience the simplicity of securing your reservations online, allowing you to focus on the excitement of your upcoming adventure.</p>
+                        <p class="mb-4" id="contactus_descrption_p">Discover the convenience of online booking with us. Streamlined processes ensure a seamless experience. Dive into comfort and ease as you explore our services. Experience the simplicity of securing your reservations online, allowing you to focus on the excitement of your upcoming adventure.</p>
                         <p class="mb-4">Count on our dedicated team for seamless assistance. From inquiries to personalized help, we ensure a smooth journey.</p>
-                        <a class="btn btn-outline-light py-3 px-5 mt-2" href="">Read More</a>
+                        <a class="btn btn-outline-light py-3 px-5 mt-2"  onclick="toggleModal('contactus_descrption')">Read More</a>
+
+                        <div id="contactus_descrption" class="modal_2" style="border: none; height: 80%; color: black; top: 30%; left: 1%;">
+                            <div class="text-lg-end " style="width: 100%; padding-right: 10px; cursor: pointer;">
+                                <span class="close-btn" style="font-size: 30px;" onclick="closeModal('contactus_descrption')">&times;</span>
+                            </div>
+                            <hr style="margin: 0 0;">
+                            <div class="modal-content_1 ml-2 mr-2" style="border:none; text-align: left; margin-left:10px; margin-right:10px ">
+                                <p>Discover the convenience of online booking with us. Streamlined processes ensure a seamless experience. Dive into comfort and ease as you explore our services. Experience the simplicity of securing your reservations online, allowing you to focus on the excitement of your upcoming adventure.
+
+                                    Count on our dedicated team for seamless assistance. From inquiries to personalized help, we ensure a smooth journey.
+                                    Discover the convenience of online booking with us. Streamlined processes ensure a seamless experience. Dive into comfort and ease as you explore our services. Experience the simplicity of securing your reservations online, allowing you to focus on the excitement of your upcoming adventure.
+
+                                    Count on our dedicated team for seamless assistance. From inquiries to personalized help, we ensure a smooth journey.
+                                    Discover the convenience of online booking with us. Streamlined processes ensure a seamless experience. Dive into comfort and ease as you explore our services. Experience the simplicity of securing your reservations online, allowing you to focus on the excitement of your upcoming adventure.
+
+                                    Count on our dedicated team for seamless assistance. From inquiries to personalized help, we ensure a smooth journey.
+                                    Discover the convenience of online booking with us. Streamlined processes ensure a seamless experience. Dive into comfort and ease as you explore our services. Experience the simplicity of securing your reservations online, allowing you to focus on the excitement of your upcoming adventure.
+
+                                    Count on our dedicated team for seamless assistance. From inquiries to personalized help, we ensure a smooth journey. </p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <h1 class="text-white mb-4">Book A Tour</h1>
@@ -430,11 +486,17 @@
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
                                         <label for="datetime">Date & Time</label>
                                     </div>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                    <input type="date" class="form-control bg-transparent datetimepicker-input" id="date" placeholder="Date" data-target="#date3" data-toggle="datetimepicker">
+                                    <label for="datetime">Date</label>
+                                    </div>                               
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -459,7 +521,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button  type="button" class="popup-button" onclick="showThankYouPopup()" >Book Now</button>
+                                    <button  type="button" class="popup-button" onclick="TourvalidateForm()" >Book Now</button>
                                 </div>
                             </div>
                         </form>
@@ -480,7 +542,7 @@
             </div>
             <div class="row gy-5 gx-4 justify-content-center">
                 <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="position-relative border border-primary pt-5 pb-4 px-4 h-100">
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow" style="width: 100px; height: 100px;">
                             <i class="fa fa-globe fa-3x text-white"></i>
                         </div>
@@ -491,7 +553,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="position-relative border border-primary pt-5 pb-4 px-4 h-100">
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow" style="width: 100px; height: 100px;">
                             <i class="fa fa-dollar-sign fa-3x text-white"></i>
                         </div>
@@ -502,7 +564,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="position-relative border border-primary pt-5 pb-4 px-4">
+                    <div class="position-relative border border-primary pt-5 pb-4 px-4 h-100">
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow" style="width: 100px; height: 100px;">
                             <i class="fa fa-plane fa-3x text-white"></i>
                         </div>
@@ -750,6 +812,28 @@
       document.getElementById('customModal').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
     }
+
+    function TourvalidateForm() {
+    let name = document.getElementById('name');
+    let email = document.getElementById('email');
+    let destination = document.getElementById('select1');
+    let message = document.getElementById('message');
+    let date = document.getElementById('date');
+
+    if (name.value.trim() === '' || 
+        email.value.trim() === '' || 
+        message.value.trim() === '' ||
+        date.value.trim() === '' ||undefined
+        ) 
+        {
+        
+        alert('Please fill the all  fields.');
+        return false;
+    } else {
+        showThankYouPopup();
+        return true;
+    }
+}
   </script>
 </body>
 
