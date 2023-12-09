@@ -329,6 +329,11 @@
     .testimonial-carousel::after {
         width: 200px;
     }
+      
+  .cname{
+    color:white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
 }
 
 @media (min-width: 992px) {
@@ -538,4 +543,11 @@
 
 #sinupModal_closebtn span:hover {
     color: #000000;
+}
+
+
+@media (max-width: 764px) {
+    .cname{
+        color: #86B817;
+    }
 }

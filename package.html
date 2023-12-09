@@ -123,7 +123,7 @@
                     </div> -->
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
+                <!-- <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register</a> -->
             </div>
         </nav>
 
@@ -180,7 +180,7 @@
                             <p id="descrption">Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;"  onclick="toggleModal('descriptionModal0')">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                             </div>
                             <div id="descriptionModal0" class="modal_2" style="border: none;">
                                 <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal0')" style="font-size: 30px;">&times;</span></div>
@@ -215,7 +215,7 @@
                             <p id="description1">Explore the diverse beauty of Indonesia. Whether it's the vibrant energy of Bali or cultural richness in Yogyakarta, our package promises an unforgettable journey.</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <a  class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal1')">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                             </div>
                         </div>
 
@@ -251,7 +251,7 @@
                             <p id="description2">Escape to the spiritual haven of Rishikesh, nestled in the Himalayas. Immerse yourself in Rafting, yoga, meditation, and thrilling river rafting for a harmonious and adventurous retreat.</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal2')">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                             </div>
 
                             <div id="descriptionModal2" class="modal_2" style="border: none;">
@@ -302,7 +302,7 @@
                                 Explore the enchantment of Assam with our package. From vibrant cities to tranquil tea gardens, immerse yourself in a perfect fusion of rich culture and natural beauty.</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal3')">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                             </div>
 
                             <div id="descriptionModal3" class="modal_2" style="border: none;">
@@ -338,7 +338,7 @@
                             <p>Embark on a majestic journey through Rajasthan with our package. From the royal palaces of Jaipur to the golden sands of Jaisalmer, indulge in the perfect mix of history and splendor.</p>
                                 <div class="d-flex justify-content-center mb-2">
                                 <a  class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal4')">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                             </div>
                             <div id="descriptionModal4" class="modal_2" style="border: none;">
                                 <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal4')" style="font-size: 30px;">&times;</span></div>
@@ -373,7 +373,7 @@
                             <p>Uncover the charm of Uttarakhand with our package. From the spiritual ambiance of Rishikesh to the scenic beauty of Nainital, embrace the harmonious blend of spirituality and nature.</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal5')">Read More</a>
-                                <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                             </div>
                             <div id="descriptionModal5" class="modal_2" style="border: none;">
                                 <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal5')" style="font-size: 30px;">&times;</span></div>
@@ -417,7 +417,7 @@
                                 <p>Immerse yourself in the vast wonders of Russia with our package. From the cultural riches of Moscow to the historic beauty of St. Petersburg, discover the diverse landscapes and rich heritage of this captivating country.</p> 
                                 <div class="d-flex justify-content-center mb-2">
                                     <a  class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal6')">Read More</a>
-                                    <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                    <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                                 </div>
                                 <div id="descriptionModal6" class="modal_2" style="border: none;">
                                     <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal6')" style="font-size: 30px;">&times;</span></div>
@@ -452,7 +452,7 @@
                                 <p>Experience the glamour of Dubai with our package. From iconic skyscrapers to luxury shopping, indulge in the perfect mix of modernity and opulence.Full enjoyable experience and unlimited fun!</p>
                                 <div class="d-flex justify-content-center mb-2">
                                     <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal7')">Read More</a>
-                                    <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                    <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                                 </div>
                                 <div id="descriptionModal7" class="modal_2" style="border: none;">
                                     <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal7')" style="font-size: 30px;">&times;</span></div>
@@ -488,7 +488,7 @@
                                     Embark on an adventure across the USA with our package. From the bustling streets of New York City to the scenic wonders of the Grand Canyon, explore the diverse landscapes and cultural treasures of this vast nation.</p>
                                 <div class="d-flex justify-content-center mb-2">
                                     <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal8')">Read More</a>
-                                    <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                                    <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
                                 </div>
                                 <div id="descriptionModal8" class="modal_2" style="border: none;">
                                     <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal8')" style="font-size: 30px;">&times;</span></div>
@@ -879,6 +879,11 @@ function TourvalidateForm() {
             }
         }
 
+        function redirectToPayment() {
+        console.log("hello ")
+            // Redirect to the desired URL
+            window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
+        }
   </script>
 </body>
 
