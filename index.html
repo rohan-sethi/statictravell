@@ -31,6 +31,11 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!--  country Flag  css  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" />
+    <!-- JS -->
+
     <!--Start of Tawk.to Script-->
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -314,8 +319,8 @@
                 <h6 class="section-title bg-white text-center text-primary px-3">Packages</h6>
                 <h1 class="mb-5">Awesome Packages</h1>
             </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="row g-4 justify-content-center" id="packg_card_container">
+                <!-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="package-item h-100 position-relative">
                         <div class="overflow-hidden">
                             <img class="img-fluid" src="img/package-1.jpg" alt="">
@@ -428,7 +433,7 @@
                         </div>
                
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -472,7 +477,7 @@
                     </div>
                     <div class="col-md-6">
                         <h1 class="text-white mb-4">Book A Tour</h1>
-                        <form>
+                        <form id="tourForm" onsubmit="event.preventDefault(); onFormSubmit();">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -486,6 +491,19 @@
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number" style="padding: 16px 51px;">
+                                        <label for="number"></label>
+
+                                    </div>
+                                </div>
+
+                    
+
+                                
                                 <!-- <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
@@ -501,17 +519,23 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select bg-transparent" id="select1">
-                                            <option value="1">Manali</option>
-                                            <option value="2">Goa</option>
-                                            <option value="3">Kerela </option>
-                                            <option value="1">Thailand </option>
-                                            <option value="2">Indonesia </option>
-                                            <option value="3">Bali </option>
-                                            <option value="1">Maldives </option>
-                                            <option value="2">Taiwan </option>
-                                            <option value="3">Rishikesh </option>
+                                            <option value="Manali">Manali</option>
+                                            <option value="Goa">Goa</option>
+                                            <option value="Kerela">Kerela</option>
+                                            <option value="Thailand">Thailand</option>
+                                            <option value="Indonesia">Indonesia</option>
+                                            <option value="Bali">Bali</option>
+                                            <option value="Maldives">Maldives</option>
+                                            <option value="Taiwan">Taiwan</option>
+                                            <option value="Rishikesh">Rishikesh</option>
                                         </select>
                                         <label for="select1">Destination</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="hidden"" class="form-control bg-transparent" id="trphone" placeholder="Travel Phone">
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -521,7 +545,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button  type="button" class="popup-button" onclick="TourvalidateForm()" >Book Now</button>
+                                    <button  type="submit" class="popup-button"  >Book Now</button>
                                 </div>
                             </div>
                         </form>
@@ -780,8 +804,8 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-<!-- Custom Modal and Overlay -->
-<div id="customModal" class="modal">
+  <!-- Custom Modal and Overlay -->
+     <div id="customModal" class="modal">
     <p>Thank you for your interaction. Your message has been received.</p>
     <button class="popup-button" onclick="hideThankYouPopup()">Close</button>
   </div>
@@ -798,49 +822,289 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js">
     </script>
 <script>
+
+
+var input = document.querySelector("#number");
+intlTelInput(input, {
+    allowExtensions: true,
+    autoFormat: false,
+    autoHideDialCode: false,
+    autoPlaceholder: false,
+    defaultCountry: "in",
+    nationalMode: false,
+    numberType: "MOBILE",
+    onlyCountries: ['in','us','ca'],
+    preventInvalidNumbers: true,
+    utilsScript: "lib/libphonenumber/build/utils.js"
+
+});
+
+// function getCountryCode() {
+//     return $.get("https://ipinfo.io/json", function (response) {
+//       return response.country;
+//     });
+//   }
+//   getCountryCode().done(function (countryCode) {
+//     $("#number").intlTelInput({
+//       allowExtensions: true,
+//       autoFormat: false,
+//       autoHideDialCode: false,
+//       autoPlaceholder: false,
+//       defaultCountry: countryCode,
+//       nationalMode: false,
+//       numberType: "MOBILE",
+//       preventInvalidNumbers: true,
+//     });
+//   }).fail(function () {
+//     console.error("Error fetching country information");
+//   });
+
+
+
+
+
     function showThankYouPopup() {
       document.getElementById('customModal').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
     }
-  
-    function hideThankYouPopup() {
+    
+function hideThankYouPopup() {
       document.getElementById('customModal').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
     }
 
-    function TourvalidateForm() {
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let destination = document.getElementById('select1');
-    let message = document.getElementById('message');
-    let date = document.getElementById('date');
+async function submitFormData() {
+    const apiUrl = "https://katchintours.swiftexwallet.com/api/form/add-form";
 
-    if (name.value.trim() === '' || 
-        email.value.trim() === '' || 
-        message.value.trim() === '' ||
-        date.value.trim() === '' ||undefined
-        ) 
-        {
-        
-        alert('Please fill the all  fields.');
-        return false;
-    } else {
-        showThankYouPopup();
-        return true;
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const date = document.getElementById("date").value.trim();
+    const destination = document.getElementById("select1").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const mnumber = document.getElementById('number').value.trim();
+
+
+     const travelPhone = "7895923295"
+    const trnumber = document.getElementById('trphone').value=travelPhone
+    const formData = {
+        cName: name,
+        cDate: date,
+        cDesc: message,
+        cDestination: destination,
+        cEmail: email,
+        cPhone: mnumber,
+        travelPhone:trnumber
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        const responseData = await response.json();
+        resetForm()
+        console.log("API Response:", responseData);
+    } catch (error) {
+        console.error("Error making API request:", error);
+        alert("An error occurred while submitting the form. Please check the console for details.");
     }
-
 }
 
+//reste form after submisson 
+function resetForm() {
+    document.getElementById("tourForm").reset();
+}
+
+function validateForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const destination = document.getElementById('select1').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const mnumber = document.getElementById('number').value.trim();
+    const trnumber = document.getElementById('trphone').value.trim();
+
+    if (name === '' || email === '' || message === '' || date === '' || mnumber === '' ) {
+        alert('Please fill out all fields.');
+        return false;
+    }
+
+    const trnumberPattern = /^\+[1-9]\d{7,11}$/;
+
+    if (!trnumberPattern.test(mnumber)) {
+        alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
+        return false;
+    }
+   
+    // if (!trnumberPattern.test(mnumber)) {
+    //     alert('Please enter a valid 10-digit integer  Phone Number.');
+    //     return false;
+    // }
+
+    // if(onlyCountries){
+
+    // }
+    return true;
+}
+
+function onFormSubmit() {
+    const isValid = validateForm();
+    if (isValid) {
+        submitFormData();
+        showThankYouPopup();
+    }
+}
+
+
 function redirectToPayment() {
-        console.log("hello ")
-            // Redirect to the desired URL
             window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
         }
+
+ const config = {
+  phoneNumber: '7895923294',
+  apiEndpoint: `https://katchintours.swiftexwallet.com/api/package/get-all-package-open?phoneNumber=`,
+  razorpayPaymentURL: 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'
+};
+
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    console.log(response)
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+const packagesToShowInitially = 3;
+let packagesToShow = packagesToShowInitially;
+let allpackages=[];
+
+function renderPackages(data) {
+    console.log(data)
+  const container = document.getElementById('packg_card_container');
+  if (!data || !data.packages || !Array.isArray(data.packages
+)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+  const packages = data.packages;
+   allpackages =packages
+    allpackages.slice(0, packagesToShow).forEach((package)=> {
+    const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
+    const packageElement = document.createElement('div');
+    packageElement.className = 'col-lg-4 col-md-6';
+    const modalId = `descriptionModal${package._id}`;
+
+
+    packageElement.innerHTML = `
+      <div class="package-item h-100 position-relative">
+        <div class="overflow-hidden" style='height:300px'>
+          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
+        </div>
+        <div class="d-flex border-bottom">
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+ </div>
+ <div class="text-center p-4">
+ <h3 class="mb-0">${package.price} INR</h3>
+ <div class="mb-3">
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+     </div>
+     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
+
+        <a class="btn btn-sm btn-primary px-3 border-end"
+          style="border-radius: 30px 0 0 30px;"
+          onclick="openModal('${modalId}', '${package.description}')">Read More</a>
+        <a class="btn btn-sm btn-primary px-3"
+          style="border-radius: 0 30px 30px 0;"
+          onclick="redirectToPayment('${package.id}')">Book Now</a>
+          
+          <div id="${modalId}" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none;text-align: left;">
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+                                </div>
+      </div>
+    `;
+
+    container.appendChild(packageElement);
+
+ const modalElement = document.createElement('div');
+//   modalElement.id = `${modalId}`;
+  modalElement.className = 'modal_2';
+  modalElement.style.border = 'none';
+
+  modalElement.innerHTML = `
+    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
+        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+    </div>
+    <hr style="margin: 0 0;">
+    <div class="modal-content_1" style="border:none; text-align: left;">
+      <p>${package.description}</p>
+    </div>
+  `;
+
+
+  container.appendChild(modalElement);
+
+  });
+}
+
+function openModal(modalId, content) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    console.log(modal);
+    modal.style.display = 'block';
+  } else {
+    console.error(`Modal element with ID '${modalId}' not found.`);
+  }
+}
+
+function closeModal(modalId) {
+  console.log('Closing modal:', modalId);
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'none';
+  } else {
+    console.error(`Modal element with ID '${modalId}' not found.`);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const packages = await fetchData(config.apiEndpoint + config.phoneNumber);
+    if (packages) {
+      renderPackages(packages);
+    }
+  } catch (error) {
+    console.error(' somthine went wrong:', error);
+  }
+});
+
+
+
   </script>
 </body>
 

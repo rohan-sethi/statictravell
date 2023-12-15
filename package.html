@@ -37,13 +37,9 @@
     <style>
 
 
-    #myContainer {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
-    }
+  
 
-    #viewMoreBtn {
+    .viewMoreBtn {
       cursor: pointer;
       background-color: #3498db;
       color: #fff;
@@ -52,12 +48,13 @@
       border: none;
       border-radius: 5px;
       transition: background-color 0.3s;
+      max-width: 160px;
       
     }
 
-    #viewMoreBtn:hover {
+    .viewMoreBtn:hover {
       background-color: #2980b9;
-    }
+    } 
     </style>
 </head>
 
@@ -151,356 +148,11 @@
 
 
     <!-- Package Start -->
-    <div class="container-xxl py-5" id="pack">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Packages</h6>
-                <h1 class="mb-5">Awesome Packages</h1>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="package-item  h-100 position-relative">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/package-1.jpg" alt="">
-                        </div>
-                        <div class="d-flex border-bottom">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Thailand</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                        </div>
-                        <div class="text-center p-4">
-                            <h3 class="mb-0">28,000 INR</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>
-                            <p id="descrption">Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.</p>
-                            <div class="d-flex justify-content-center mb-2">
-                                <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;"  onclick="toggleModal('descriptionModal0')">Read More</a>
-                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                            </div>
-                            <div id="descriptionModal0" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal0')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none; text-align: left;">
-                                    
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="package-item  h-100 position-relative">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/package-2.jpg" alt="">
-                        </div>
-                        <div class="d-flex border-bottom">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Indonesia</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                        </div>
-                        <div class="text-center p-4">
-                            <h3 class="mb-0">56,000 INR</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>
-                            <p id="description1">Explore the diverse beauty of Indonesia. Whether it's the vibrant energy of Bali or cultural richness in Yogyakarta, our package promises an unforgettable journey.</p>
-                            <div class="d-flex justify-content-center mb-2">
-                                <a  class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal1')">Read More</a>
-                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                            </div>
-                        </div>
-
-                        <div id="descriptionModal1" class="modal_2" style="border: none;">
-                            <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal1')" style="font-size: 30px;">&times;</span></div>
-                            <hr style="margin: 0 0;">
-                            <div class="modal-content_1" style="border:none; text-align: left;">
-                                
-                                <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="package-item  h-100 position-relative">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/package-3.jpg" alt="">
-                        </div>
-                        <div class="d-flex border-bottom">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Rishikesh</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                        </div>
-                        <div class="text-center p-4">
-                            <h3 class="mb-0">15,000 INR</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>
-                            <p id="description2">Escape to the spiritual haven of Rishikesh, nestled in the Himalayas. Immerse yourself in Rafting, yoga, meditation, and thrilling river rafting for a harmonious and adventurous retreat.</p>
-                            <div class="d-flex justify-content-center mb-2">
-                                <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal2')">Read More</a>
-                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                            </div>
-
-                            <div id="descriptionModal2" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal2')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none; text-align: left;">
-                                    
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <!-- "View More" button -->
-      <div class="row g-4 justify-content-center">
-        <div class="col-md-6 text-center">
-        <button id="viewMoreBtn">View More</button>
-    </div>
-    </div>
-
-    <div id="myContainer">
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="package-item h-100 position-relative">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/assam.avif" alt="">
-                        </div>
-                        <div class="d-flex border-bottom">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Assam</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                        </div>
-                        <div class="text-center p-4">
-                            <h3 class="mb-0">26,000 INR</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>
-                            <p id='description3'>
-                                Explore the enchantment of Assam with our package. From vibrant cities to tranquil tea gardens, immerse yourself in a perfect fusion of rich culture and natural beauty.</p>
-                            <div class="d-flex justify-content-center mb-2">
-                                <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal3')">Read More</a>
-                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                            </div>
-
-                            <div id="descriptionModal3" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal3')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none; text-align: left;">
-                                    
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="package-item  h-100 position-relative">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/rajisthan.jpeg" alt="">
-                        </div>
-                        <div class="d-flex border-bottom">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Rajisthan</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>5 days</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                        </div>
-                        <div class="text-center p-4">
-                            <h3 class="mb-0">56,000 INR</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>
-                            <p>Embark on a majestic journey through Rajasthan with our package. From the royal palaces of Jaipur to the golden sands of Jaisalmer, indulge in the perfect mix of history and splendor.</p>
-                                <div class="d-flex justify-content-center mb-2">
-                                <a  class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal4')">Read More</a>
-                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                            </div>
-                            <div id="descriptionModal4" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal4')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none; text-align: left;">
-                                    
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="package-item  h-100 position-relative">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/uttrakhand.jpeg" alt="">
-                        </div>
-                        <div class="d-flex border-bottom">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Uttrakhand</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                        </div>
-                        <div class="text-center p-4">
-                            <h3 class="mb-0">18,000 INR</h3>
-                            <div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>
-                            <p>Uncover the charm of Uttarakhand with our package. From the spiritual ambiance of Rishikesh to the scenic beauty of Nainital, embrace the harmonious blend of spirituality and nature.</p>
-                            <div class="d-flex justify-content-center mb-2">
-                                <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal5')">Read More</a>
-                                <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                            </div>
-                            <div id="descriptionModal5" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal5')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none; text-align: left;">
-                                    
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-
-    
+        <div >
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="row g-4 justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="package-item  h-100 position-relative">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="img/Russia.jpeg" alt="">
-                            </div>
-                            <div class="d-flex border-bottom">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Russia</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                            </div>
-                            <div class="text-center p-4">
-                                <h3 class="mb-0">1,28,000 INR</h3>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p>Immerse yourself in the vast wonders of Russia with our package. From the cultural riches of Moscow to the historic beauty of St. Petersburg, discover the diverse landscapes and rich heritage of this captivating country.</p> 
-                                <div class="d-flex justify-content-center mb-2">
-                                    <a  class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal6')">Read More</a>
-                                    <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                                </div>
-                                <div id="descriptionModal6" class="modal_2" style="border: none;">
-                                    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal6')" style="font-size: 30px;">&times;</span></div>
-                                    <hr style="margin: 0 0;">
-                                    <div class="modal-content_1" style="border:none; text-align: left;">
-                                        
-                                        <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="package-item h-100 position-relative">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="img/dubai.jpeg" alt="">
-                            </div>
-                            <div class="d-flex border-bottom">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>Dubai</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                            </div>
-                            <div class="text-center p-4">
-                                <h3 class="mb-0">46,000 INR</h3>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p>Experience the glamour of Dubai with our package. From iconic skyscrapers to luxury shopping, indulge in the perfect mix of modernity and opulence.Full enjoyable experience and unlimited fun!</p>
-                                <div class="d-flex justify-content-center mb-2">
-                                    <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal7')">Read More</a>
-                                    <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                                </div>
-                                <div id="descriptionModal7" class="modal_2" style="border: none;">
-                                    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal7')" style="font-size: 30px;">&times;</span></div>
-                                    <hr style="margin: 0 0;">
-                                    <div class="modal-content_1" style="border:none; text-align: left;">
-                                        
-                                        <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 position-relative">
-                        <div class="package-item h-100 position-relative">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="img/usa.jpeg" alt="">
-                            </div>
-                            <div class="d-flex border-bottom">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>USA</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
-                            </div>
-                            <div class="text-center p-4">
-                                <h3 class="mb-0">2,15,000 INR</h3>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p>
-                                    Embark on an adventure across the USA with our package. From the bustling streets of New York City to the scenic wonders of the Grand Canyon, explore the diverse landscapes and cultural treasures of this vast nation.</p>
-                                <div class="d-flex justify-content-center mb-2">
-                                    <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" onclick="toggleModal('descriptionModal8')">Read More</a>
-                                    <a  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" onclick="redirectToPayment()">Book Now</a>
-                                </div>
-                                <div id="descriptionModal8" class="modal_2" style="border: none;">
-                                    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn" onclick="closeModal('descriptionModal8')" style="font-size: 30px;">&times;</span></div>
-                                    <hr style="margin: 0 0;">
-                                    <div class="modal-content_1" style="border:none; text-align: left;">
-                                        
-                                        <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation.Arrive Although the climate varies throughout Thailand, you can visit all year round. The best season to visit Thailand is from November till early April. This is when the heavens are no longer pouring and the sky clears up. The days are warm and perfect for an outing at the beach or for checking out the numerous heritage sites. April onwards the heat gets oppressive and June is the start of the rainy season again.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row g-4 justify-content-center" id="packg_card_container">
+
                 </div>
             </div>
         </div>
@@ -544,7 +196,7 @@
                     
                     <div class="col-md-6">
                         <h1 class="text-white mb-4">Book A Tour</h1>
-                        <form>
+                        <form id="tourForm" onsubmit="event.preventDefault(); onFormSubmit();">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -558,26 +210,47 @@
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
+
+
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                    <input type="date" class="form-control bg-transparent datetimepicker-input" id="" placeholder="Date" data-target="#date3" data-toggle="datetimepicker">
-                                    <label for="datetime">Date  Time</label>
+                                        <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number">
+                                        <label for="number">Phone number</label>
+
+                                    </div>
+                                </div>    
+                                <!-- <div class="col-md-6">
+                                    <div class="form-floating date" id="date3" data-target-input="nearest">
+                                        <input type="text" class="form-control bg-transparent datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                        <label for="datetime">Date & Time</label>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                    <input type="date" class="form-control bg-transparent datetimepicker-input" id="date" placeholder="Date" data-target="#date3" data-toggle="datetimepicker">
+                                    <label for="datetime">Date</label>
                                     </div>                               
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select bg-transparent" id="select1">
-                                            <option value="1">Manali</option>
-                                            <option value="2">Goa</option>
-                                            <option value="3">Kerela </option>
-                                            <option value="1">Thailand </option>
-                                            <option value="2">Indonesia </option>
-                                            <option value="3">Bali </option>
-                                            <option value="1">Maldives </option>
-                                            <option value="2">Taiwan </option>
-                                            <option value="3">Rishikesh </option>
+                                            <option value="Manali">Manali</option>
+                                            <option value="Goa">Goa</option>
+                                            <option value="Kerela">Kerela</option>
+                                            <option value="Thailand">Thailand</option>
+                                            <option value="Indonesia">Indonesia</option>
+                                            <option value="Bali">Bali</option>
+                                            <option value="Maldives">Maldives</option>
+                                            <option value="Taiwan">Taiwan</option>
+                                            <option value="Rishikesh">Rishikesh</option>
                                         </select>
                                         <label for="select1">Destination</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="hidden"" class="form-control bg-transparent" id="trphone" placeholder="Travel Phone">
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -587,7 +260,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button  type="button" class="popup-button"  onclick="TourvalidateForm()">Book Now</button>
+                                    <button  type="submit" class="popup-button"  >Book Now</button>
                                 </div>
                             </div>
                         </form>
@@ -730,7 +403,7 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 <!-- Custom Modal and Overlay -->
-<div id="customModal" class="modal">
+   <div id="customModal" class="modal">
     <p>Thank you for your interaction. Your message has been received.</p>
     <button class="popup-button" onclick="hideThankYouPopup()">Close</button>
   </div>
@@ -752,39 +425,6 @@
     <script src="js/main.js">
     </script>
 <script>
-    document.getElementById('myContainer').style.display="none";
-   
-    function showThankYouPopup() {
-            console.log("hello-bhai")
-      document.getElementById('customModal').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-      document.getElementById('name').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('date3').value = '';
-        document.getElementById('select1').value = '';
-        document.getElementById('message').value = '';
-    }
-  
-    function hideThankYouPopup() {
-      document.getElementById('customModal').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-    }
-
-
-    document.getElementById('viewMoreBtn').addEventListener('click', async function() {
-    var container = document.getElementById('myContainer');
-    var button = document.getElementById('viewMoreBtn');
-    console.log(container.style.display)
-    if (container.style.display === 'none') {
-      container.style.display = 'block'; // Show the container
-      button.textContent = 'View Less';
-    } else {
-      container.style.display = 'none';
-      button.textContent = 'View More'; // Hide the container
-    }
-  });
-  
-
 
 //   tour form validation 
 // function  TourvalidateForm() {
@@ -834,7 +474,6 @@
 //         }
 //         // functio for show error message 
 
-
 function TourvalidateForm() {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
@@ -857,7 +496,7 @@ function TourvalidateForm() {
     }
 }
 
-      function showError(input, errorMessage) {
+function showError(input, errorMessage) {
        let parent = input.parentElement;
        let errorElement = parent.querySelector('.error-message');
 
@@ -869,22 +508,321 @@ function TourvalidateForm() {
 
             errorElement.innerText = errorMessage;
         }
-
-    // hiding error input when user add value in input box
-     function hideError(input) {
+ function hideError(input) {
      let parent = input.parentElement;
      let errorElement = parent.querySelector('.error-message');
             if (errorElement) {
                 errorElement.innerText = ''; 
             }
-        }
+        }         
 
-        function redirectToPayment() {
-        console.log("hello ")
-            // Redirect to the desired URL
-            window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
-        }
-  </script>
+function redirectToPayment(packageId) {
+console.log(`Redirecting to payment for package with ID: ${packageId}`);
+window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
+}
+        
+const config = {
+  phoneNumber: '7895923294',
+  apiEndpoint: `https://katchintours.swiftexwallet.com/api/package/get-all-package-open?phoneNumber=`,
+  razorpayPaymentURL: 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'
+};
+
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    console.log(response)
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+
+function renderPackages(data) {
+  const container = document.getElementById('packg_card_container');
+  const defaultPackagesToShow = 3;
+
+  if (!data || !data.packages || !Array.isArray(data.packages)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+  const packages = data.packages.slice(0, defaultPackagesToShow); // Show only the first three packages
+  packages.forEach((package) => {
+    const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
+    const packageElement = document.createElement('div');
+    packageElement.className = 'col-lg-4 col-md-6';
+    const modalId = `descriptionModal${package._id}`;
+
+    packageElement.innerHTML = `
+      <div class="package-item h-100 position-relative">
+        <div class="overflow-hidden" style='height:300px'>
+          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
+        </div>
+        <div class="d-flex border-bottom">
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+ </div>
+ <div class="text-center p-4">
+ <h3 class="mb-0">${package.price} INR</h3>
+ <div class="mb-3">
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+     </div>
+     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
+
+        <a class="btn btn-sm btn-primary px-3 border-end"
+          style="border-radius: 30px 0 0 30px;"
+          onclick="openModal('${modalId}', '${package.description}')">Read More</a>
+        <a class="btn btn-sm btn-primary px-3"
+          style="border-radius: 0 30px 30px 0;"
+          onclick="redirectToPayment('${package.id}')">Book Now</a>
+          
+          <div id="${modalId}" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none;text-align: left;">
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+                                </div>
+      </div>
+    `;
+
+
+    container.appendChild(packageElement);
+
+    const modalElement = document.createElement('div');
+//   modalElement.id = `${modalId}`;
+  modalElement.className = 'modal_2';
+  modalElement.style.border = 'none';
+
+  modalElement.innerHTML = `
+    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
+        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+    </div>
+    <hr style="margin: 0 0;">
+    <div class="modal-content_1" style="border:none; text-align: left;">
+      <p>${package.description}</p>
+    </div>
+  `;
+
+
+  container.appendChild(modalElement);
+
+  });
+
+  //  if there are more packages to show
+  if (data.packages.length > defaultPackagesToShow) {
+    const viewMoreButton = document.createElement('button');
+    viewMoreButton.className = ' viewMoreBtn';
+    viewMoreButton.innerText = 'View More';
+    viewMoreButton.addEventListener('click', function () {
+      container.innerHTML = ''; 
+      data.packages.forEach((package) => {
+        const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
+        const packageElement = document.createElement('div');
+        packageElement.className = 'col-lg-4 col-md-6';
+        const modalId = `descriptionModal${package._id}`;
+
+        packageElement.innerHTML = `
+      <div class="package-item h-100 position-relative">
+        <div class="overflow-hidden" style='height:300px'>
+          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
+        </div>
+        <div class="d-flex border-bottom">
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+ </div>
+ <div class="text-center p-4">
+ <h3 class="mb-0">${package.price} INR</h3>
+ <div class="mb-3">
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+     </div>
+     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
+
+        <a class="btn btn-sm btn-primary px-3 border-end"
+          style="border-radius: 30px 0 0 30px;"
+          onclick="openModal('${modalId}', '${package.description}')">Read More</a>
+        <a class="btn btn-sm btn-primary px-3"
+          style="border-radius: 0 30px 30px 0;"
+          onclick="redirectToPayment('${package.id}')">Book Now</a>
+          
+          <div id="${modalId}" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none;text-align: left;">
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+                                </div>
+      </div>
+    `;
+
+        container.appendChild(packageElement);
+
+
+        const modalElement = document.createElement('div');
+//   modalElement.id = `${modalId}`;
+  modalElement.className = 'modal_2';
+  modalElement.style.border = 'none';
+
+  modalElement.innerHTML = `
+    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
+        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+    </div>
+    <hr style="margin: 0 0;">
+    <div class="modal-content_1" style="border:none; text-align: left;">
+      <p>${package.description}</p>
+    </div>
+  `;
+
+
+  container.appendChild(modalElement);
+
+      });
+    });
+
+    container.appendChild(viewMoreButton);
+  }
+}
+
+
+function openModal(modalId, content) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    console.log(modal);
+    modal.style.display = 'block';
+  } else {
+    console.error(`Modal element with ID '${modalId}' not found.`);
+  }
+}
+
+function closeModal(modalId) {
+  console.log('Closing modal:', modalId);
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'none';
+  } else {
+    console.error(`Modal element with ID '${modalId}' not found.`);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const packages = await fetchData(config.apiEndpoint + config.phoneNumber);
+    if (packages) {
+      renderPackages(packages);
+    }
+  } catch (error) {
+    console.error(' somthine went wrong:', error);
+  }
+});
+
+
+function showThankYouPopup() {
+      document.getElementById('customModal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    
+function hideThankYouPopup() {
+      document.getElementById('customModal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+async function submitFormData() {
+    const apiUrl = "https://katchintours.swiftexwallet.com/api/form/add-form";
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const date = document.getElementById("date").value.trim();
+    const destination = document.getElementById("select1").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const mnumber = document.getElementById('number').value.trim();
+
+
+     const travelPhone = "7895923295"
+    const trnumber = document.getElementById('trphone').value=travelPhone
+    const formData = {
+        cName: name,
+        cDate: date,
+        cDesc: message,
+        cDestination: destination,
+        cEmail: email,
+        cPhone: mnumber,
+        travelPhone:trnumber
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        const responseData = await response.json();
+        resetForm()
+        console.log("API Response:", responseData);
+    } catch (error) {
+        console.error("Error making API request:", error);
+        alert("An error occurred while submitting the form. Please check the console for details.");
+    }
+}
+
+//reste form after submisson 
+function resetForm() {
+    document.getElementById("tourForm").reset();
+}
+
+function validateForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const destination = document.getElementById('select1').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const mnumber = document.getElementById('number').value.trim();
+    const trnumber = document.getElementById('trphone').value.trim();
+
+    if (name === '' || email === '' || message === '' || date === '' || mnumber === '' ) {
+        alert('Please fill out all fields.');
+        return false;
+    }
+
+    const trnumberPattern = /^\d{10}$/;
+    // if (!trnumberPattern.test(trnumber)) {
+    //     alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
+    //     return false;
+    // }
+   
+    if (!trnumberPattern.test(mnumber)) {
+        alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
+        return false;
+    }
+    return true;
+}
+
+function onFormSubmit() {
+    const isValid = validateForm();
+    if (isValid) {
+        submitFormData();
+        showThankYouPopup();
+    }
+}
+
+
+
+</script>
 </body>
 
 </html>

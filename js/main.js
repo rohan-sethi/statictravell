@@ -89,14 +89,15 @@
             }
         }
     });
+
     
 })(jQuery);
 
 
 
+      
 //  togle redmore funcanlity
 function toggleModal(modalId) {
-    console.log("hello world ")
     var modal = document.getElementById(modalId);
     var modals = document.querySelectorAll('.modal_2');
 
@@ -236,4 +237,11 @@ window.onclick = function(event) {
      //$('datetimepicker').datetimepicker('destroy');
     
 
-      
+
+
+
+     
+
+
+
+

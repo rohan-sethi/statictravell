@@ -243,7 +243,7 @@
                 
                 <div class="col-md-6">
                     <h1 class="text-white mb-4">Book A Tour</h1>
-                    <form>
+                    <form id="tourForm" onsubmit="event.preventDefault(); onFormSubmit();">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -257,26 +257,51 @@
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
+
+
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                <input type="date" class="form-control bg-transparent datetimepicker-input" id="" placeholder="Date" data-target="#date3" data-toggle="datetimepicker">
-                                <label for="datetime">Date  Time</label>
+                                    <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number">
+                                    <label for="number">Phone number</label>
+
+                                </div>
+                            </div>
+
+                
+
+                            
+                            <!-- <div class="col-md-6">
+                                <div class="form-floating date" id="date3" data-target-input="nearest">
+                                    <input type="text" class="form-control bg-transparent datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                    <label for="datetime">Date & Time</label>
+                                </div>
+                            </div> -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                <input type="date" class="form-control bg-transparent datetimepicker-input" id="date" placeholder="Date" data-target="#date3" data-toggle="datetimepicker">
+                                <label for="datetime">Date</label>
                                 </div>                               
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <select class="form-select bg-transparent" id="select1">
-                                        <option value="1">Manali</option>
-                                        <option value="2">Goa</option>
-                                        <option value="3">Kerela </option>
-                                        <option value="1">Thailand </option>
-                                        <option value="2">Indonesia </option>
-                                        <option value="3">Bali </option>
-                                        <option value="1">Maldives </option>
-                                        <option value="2">Taiwan </option>
-                                        <option value="3">Rishikesh </option>
+                                        <option value="Manali">Manali</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Kerela">Kerela</option>
+                                        <option value="Thailand">Thailand</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                        <option value="Bali">Bali</option>
+                                        <option value="Maldives">Maldives</option>
+                                        <option value="Taiwan">Taiwan</option>
+                                        <option value="Rishikesh">Rishikesh</option>
                                     </select>
                                     <label for="select1">Destination</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="hidden"" class="form-control bg-transparent" id="trphone" placeholder="Travel Phone">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -286,7 +311,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button  type="button" class="popup-button"  onclick="TourvalidateForm()">Book Now</button>
+                                <button  type="submit" class="popup-button"  >Book Now</button>
                             </div>
                         </div>
                     </form>
@@ -444,37 +469,129 @@
     <script src="js/main.js">
     </script>
 <script>
-    function showThankYouPopup() {
+//     function showThankYouPopup() {
+//       document.getElementById('customModal').style.display = 'block';
+//       document.getElementById('overlay').style.display = 'block';
+//     }
+  
+//     function hideThankYouPopup() {
+//       document.getElementById('customModal').style.display = 'none';
+//       document.getElementById('overlay').style.display = 'none';
+//     }
+    
+// function TourvalidateForm() {
+//     let name = document.getElementById('name');
+//     let email = document.getElementById('email');
+//     let destination = document.getElementById('select1');
+//     let message = document.getElementById('message');
+//     let date = document.getElementById('date');
+
+//     if (name.value.trim() === '' || 
+//         email.value.trim() === '' || 
+//         message.value.trim() === '' ||
+//         date.value.trim() === '' ||undefined
+//         ) 
+//         {
+        
+//         alert('Please fill the all  fields.');
+//         return false;
+//     } else {
+//         showThankYouPopup();
+//         return true;
+//     }
+// }
+function showThankYouPopup() {
       document.getElementById('customModal').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
     }
-  
-    function hideThankYouPopup() {
+    
+function hideThankYouPopup() {
       document.getElementById('customModal').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
     }
-    
-function TourvalidateForm() {
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let destination = document.getElementById('select1');
-    let message = document.getElementById('message');
-    let date = document.getElementById('date');
 
-    if (name.value.trim() === '' || 
-        email.value.trim() === '' || 
-        message.value.trim() === '' ||
-        date.value.trim() === '' ||undefined
-        ) 
-        {
-        
-        alert('Please fill the all  fields.');
-        return false;
-    } else {
-        showThankYouPopup();
-        return true;
+async function submitFormData() {
+    const apiUrl = "https://katchintours.swiftexwallet.com/api/form/add-form";
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const date = document.getElementById("date").value.trim();
+    const destination = document.getElementById("select1").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const mnumber = document.getElementById('number').value.trim();
+
+
+     const travelPhone = "7895923295"
+    const trnumber = document.getElementById('trphone').value=travelPhone
+    const formData = {
+        cName: name,
+        cDate: date,
+        cDesc: message,
+        cDestination: destination,
+        cEmail: email,
+        cPhone: mnumber,
+        travelPhone:trnumber
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    };
+
+    try {
+        const response = await fetch(apiUrl, requestOptions);
+        const responseData = await response.json();
+        resetForm()
+        console.log("API Response:", responseData);
+    } catch (error) {
+        console.error("Error making API request:", error);
+        alert("An error occurred while submitting the form. Please check the console for details.");
     }
 }
+
+//reste form after submisson 
+function resetForm() {
+    document.getElementById("tourForm").reset();
+}
+
+function validateForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const destination = document.getElementById('select1').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const mnumber = document.getElementById('number').value.trim();
+    const trnumber = document.getElementById('trphone').value.trim();
+
+    if (name === '' || email === '' || message === '' || date === '' || mnumber === '' ) {
+        alert('Please fill out all fields.');
+        return false;
+    }
+
+    const trnumberPattern = /^\d{10}$/;
+    // if (!trnumberPattern.test(trnumber)) {
+    //     alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
+    //     return false;
+    // }
+   
+    if (!trnumberPattern.test(mnumber)) {
+        alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
+        return false;
+    }
+    return true;
+}
+
+function onFormSubmit() {
+    const isValid = validateForm();
+    if (isValid) {
+        submitFormData();
+        showThankYouPopup();
+    }
+}
+
 
   </script>
 </body>

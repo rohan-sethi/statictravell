@@ -545,6 +545,13 @@
     color: #000000;
 }
 
+.fit_img{
+  height: 100% !important;
+  width: 100% !important ;
+  object-fit: cover !important;
+}
+
+
 
 @media (max-width: 764px) {
     .cname{

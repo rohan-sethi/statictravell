@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8">
+    <title>Tour and Travels</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+ 
+    <style>
+        .error {
+          color: red;
+          display: block;
+          margin-top: 1px; /* Add some margin for better spacing */
+        }
+    
+        label {
+          display: block;
+        }
+    
+        input {
+          margin-bottom: 2px;
+        }
+
+      
+      </style>
+</head>
+<body>
+
+ <section id="'singupscreen">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+     <div class="col-lg-5 col-md-5 Small shadow p-5
+     "  style="border-radius: 10px;">
+
+  <div class="text-center"><h2>Register</h2></div>
+  <form id="signupForm">
+    <div class="form-group mt-3">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" required oninput="clearError('name')">
+    <div id="nameError" class="error"></div>
+</div>
+
+<div class="form-group mt-3">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"  class="form-control" placeholder="Enter Email"  required oninput="clearError('email')">
+    <div id="emailError" class="error"></div>
+</div>
+<div class="form-group  mt-3">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required oninput="clearError('password')">
+    <div id="passwordError" class="error"></div>
+</div>
+<div class="form-group  mt-3">
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"  placeholder="Enter Phone Number" required oninput="clearError('phoneNumber')">
+    <div id="phoneNumberError" class="error"></div>
+</div>
+   
+  <div class=" d-flex justify-content-center" >
+    <button type="button" style="width:100%;"  class= "btn btn-primary mt-4 pt-2 pb-2" onclick="signup()">Register</button>
+</div>
+  </form>
+</div>
+</div>
+</div>
+</section>
+
+     <!-- JavaScript Libraries -->
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="lib/wow/wow.min.js"></script>
+     <script src="lib/easing/easing.min.js"></script>
+     <script src="lib/waypoints/waypoints.min.js"></script>
+     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+     <script src="lib/tempusdominus/js/moment.min.js"></script>
+     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+ 
+     <!-- Template Javascript -->
+     <script src="js/main.js">
+     </script>
+  <script>
+    function displayError(inputId, error) {
+      const errorDiv = document.getElementById(`${inputId}Error`);
+      errorDiv.innerText = error;
+      errorDiv.style.display = 'block';
+    }
+
+    function clearError(inputId) {
+      const errorDiv = document.getElementById(`${inputId}Error`);
+      errorDiv.innerText = '';
+      errorDiv.style.display = 'none';
+    }
+
+    async function signup() {
+      try {
+        // Reset previous errors
+        document.querySelectorAll('.error').forEach(errorDiv => {
+          errorDiv.innerText = '';
+          errorDiv.style.display = 'none';
+        });
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+
+        // Basic validation
+        if (!name) {
+          throw { field: 'name', message: 'Name is required' };
+        }
+
+        if (!email) {
+          throw { field: 'email', message: 'Email is required' };
+        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+          throw { field: 'email', message: 'Invalid email format' };
+        }
+
+        if (!password) {
+          throw { field: 'password', message: 'Password is required' };
+        } else if (password.length < 8) {
+          throw { field: 'password', message: 'Password must be at least 8 characters' };
+        }
+
+        if (!phoneNumber) {
+          throw { field: 'phoneNumber', message: 'Phone Number is required' };
+        } else if (!/^\d+$/.test(phoneNumber)) {
+          throw { field: 'phoneNumber', message: 'Phone Number must be an integer' };
+        } else if (phoneNumber.length !== 10) {
+          throw { field: 'phoneNumber', message: 'Phone Number must be 10 digits' };
+        }
+
+        const url = "https://katchintours.swiftexwallet.com/api/signup";
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            phoneNumber,
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        // You can add further logic based on the response
+
+        // Reset the form after successful submission
+        document.getElementById('signupForm').reset();
+      } catch (error) {
+        console.error('Error signing up:', error.message);
+        if (error.field) {
+          displayError(error.field, error.message);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
