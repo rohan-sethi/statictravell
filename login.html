@@ -30,7 +30,7 @@
       .delete-button{
         display: none;
         position: absolute;
-        top: 50%;
+        top: 47%;
         border: none;
         outline: none;
         background: white;
@@ -353,6 +353,7 @@ function closePackageForm() {
     }
 
 // function to get packej data   from  api 
+let packages;
 async function getPackageData() {
 const apiUrl = "https://katchintours.swiftexwallet.com/api/package/get-all-package";
 const authToken = localStorage.getItem('token');
@@ -383,45 +384,112 @@ const authToken = localStorage.getItem('token');
 
                
     if (Array.isArray(data.packages)) {
-                data.packages.forEach(package => {
+        packages = data.packages;
+        packages.forEach(package => {
                     const packageItem = document.createElement('div');
                     packageItem.className = 'col-lg-4 col-md-6';
+                    const modalId = `descriptionModal${package._id}`;
                     const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
-                    packageItem.innerHTML = `
-                    <div class="package-item h-100 position-relative">
-                      <div class="d-flex justify-content-end">
-                    <button class="delete-button" onclick="deletePackage('${package._id}')">
-                      <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i></button>
-                   </div>
-                   <div class="overflow-hidden">
-                            <img class="img-fluid" src= ${baseUrl}/${package.image} alt="">
-                        </div>
-                        <div class="d-flex border-bottom">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
-                        </div>
-                        <div class="text-center p-4">
-                            <h3 class="mb-0">${package.price} INR</h3>
-                            <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                            <p class="mb-4">${package.description}</p>
+                //     packageItem.innerHTML = `
+                //     <div class="package-item h-100 position-relative">
+                //       <div class="d-flex justify-content-end">
+                //     <button class="delete-button" onclick="deletePackage('${package._id}')">
+                //       <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i></button>
+                //    </div>
+                //    <div class="overflow-hidden">
+                //             <img class="img-fluid" src= ${baseUrl}/${package.image} alt="">
+                //         </div>
+                //         <div class="d-flex border-bottom">
+                //             <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+                //             <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+                //             <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+                //         </div>
+                //         <div class="text-center p-4">
+                //             <h3 class="mb-0">${package.price} INR</h3>
+                //             <div class="mb-3">
+                //                     <small class="fa fa-star text-primary"></small>
+                //                     <small class="fa fa-star text-primary"></small>
+                //                     <small class="fa fa-star text-primary"></small>
+                //                     <small class="fa fa-star text-primary"></small>
+                //                     <small class="fa fa-star text-primary"></small>
+                //                 </div>
+                //             <p class="mb-4">${package.description}</p>
                             
-                            <div class="d-flex justify-content-center mb-2">
-                                    <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" >Read More</a>
-                                    <a href='https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" >Book Now</a>
-                                </div>
+                //             <div class="d-flex justify-content-center mb-2">
+                //                     <a class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;" >Read More</a>
+                //                     <a href='https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'  class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;" >Book Now</a>
+                //                 </div>
 
                     
-                        </div>
-                    </div>
-                    `;
-                    packageContainer.appendChild(packageItem);
+                //         </div>
+                //     </div>
+                //     `;
+                //     packageContainer.appendChild(packageItem);
+
+
+                    packageItem.innerHTML = `
+      <div class="package-item h-100 position-relative">
+           <div class="d-flex justify-content-end">
+                 <button class="delete-button" onclick="deletePackage('${package._id}')">
+                   <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i></button>
+                </div>
+        <div class="overflow-hidden" style='height:300px'>
+          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
+        </div>
+        <div class="d-flex border-bottom">
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+ </div>
+ <div class="text-center p-4">
+ <h3 class="mb-0">${package.price} INR</h3>
+ <div class="mb-3">
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+     </div>
+     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
+
+        <a class="btn btn-sm btn-primary px-3 border-end"
+          style="border-radius: 30px 0 0 30px;"
+          onclick="openModal('${modalId}', '${package._id}')">Read More</a>
+        <a class="btn btn-sm btn-primary px-3"
+          style="border-radius: 0 30px 30px 0;"
+          onclick="redirectToPayment('${package.id}')">Book Now</a>
+          
+          <div id="${modalId}" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none;text-align: left;">
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+                                </div>
+      </div>
+    `;
+
+
+
+
+    packageContainer.appendChild(packageItem);
+    const modalElement = document.createElement('div');
+//   modalElement.id = `${modalId}`;
+  modalElement.className = 'modal_2';
+  modalElement.style.border = 'none';
+
+  modalElement.innerHTML = `
+    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
+        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+    </div>
+    <hr style="margin: 0 0;">
+    <div class="modal-content_1" style="border:none; text-align: left;">
+      <p>${package.description}</p>
+    </div>
+  `;
+
+
+  packageContainer.appendChild(modalElement);
+
 
 
                     packageItem.addEventListener('mouseover', () => {
@@ -481,6 +549,52 @@ const authToken = localStorage.getItem('token');
   }
 }
 
+// function openModal(modalId, content) {
+//   const modal = document.getElementById(modalId);
+//   if (modal) {
+//     console.log(modal);
+//     modal.style.display = 'block';
+//   } else {
+//     console.error(`Modal element with ID '${modalId}' not found.`);
+//   }
+// }
+
+// function openModal(modalId, packageId) {
+//   const modal = document.getElementById(modalId);
+//   const packageDescription = packages.find((package) => package._id === packageId).description;
+//   modal.querySelector('.modal-content_1 p').textContent = packageDescription;
+//   modal.style.display = 'block';
+// }
+
+let isModalOpen = false;
+
+function openModal(modalId, packageId) {
+  if (isModalOpen) {
+    const openModal = document.querySelector('.modal');
+    if (openModal) {
+      openModal.style.display = 'none';
+    }
+    isModalOpen = false;
+  }
+
+  const modal = document.getElementById(modalId);
+  const packageDescription = packages.find((package) => package._id === packageId).description;
+  modal.querySelector('.modal-content_1 p').textContent = packageDescription;
+  modal.style.display = 'block';
+  isModalOpen = true;
+}
+
+
+
+function closeModal(modalId) {
+  console.log('Closing modal:', modalId);
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'none';
+  } else {
+    console.error(`Modal element with ID '${modalId}' not found.`);
+  }
+}
 
 
 

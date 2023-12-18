@@ -31,6 +31,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+      <!--  country Flag  css  -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" />
 </head>
 
 <body>
@@ -261,8 +264,8 @@
 
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number">
-                                    <label for="number">Phone number</label>
+                                    <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number" style="padding: 16px 51px;">
+                                    <label for="number"></label>
 
                                 </div>
                             </div>
@@ -464,6 +467,8 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js">
@@ -510,7 +515,24 @@ function hideThankYouPopup() {
       document.getElementById('overlay').style.display = 'none';
     }
 
-async function submitFormData() {
+
+    var input = document.querySelector("#number");
+intlTelInput(input, {
+    allowExtensions: true,
+    autoFormat: false,
+    autoHideDialCode: false,
+    autoPlaceholder: false,
+    defaultCountry: "in",
+    nationalMode: false,
+    numberType: "MOBILE",
+    onlyCountries: ['in','us','ca'],
+    preventInvalidNumbers: true,
+    utilsScript: "lib/libphonenumber/build/utils.js"
+
+});
+
+
+    async function submitFormData() {
     const apiUrl = "https://katchintours.swiftexwallet.com/api/form/add-form";
 
     const name = document.getElementById("name").value.trim();
@@ -571,16 +593,21 @@ function validateForm() {
         return false;
     }
 
-    const trnumberPattern = /^\d{10}$/;
-    // if (!trnumberPattern.test(trnumber)) {
-    //     alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
-    //     return false;
-    // }
-   
+    const trnumberPattern = /^\+[1-9]\d{7,11}$/;
+
     if (!trnumberPattern.test(mnumber)) {
         alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
         return false;
     }
+   
+    // if (!trnumberPattern.test(mnumber)) {
+    //     alert('Please enter a valid 10-digit integer  Phone Number.');
+    //     return false;
+    // }
+
+    // if(onlyCountries){
+
+    // }
     return true;
 }
 

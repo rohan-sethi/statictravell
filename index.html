@@ -1035,7 +1035,8 @@ function renderPackages(data) {
 
         <a class="btn btn-sm btn-primary px-3 border-end"
           style="border-radius: 30px 0 0 30px;"
-          onclick="openModal('${modalId}', '${package.description}')">Read More</a>
+          onclick="openModal('${modalId}', '${package._id}')"
+>Read More</a>
         <a class="btn btn-sm btn-primary px-3"
           style="border-radius: 0 30px 30px 0;"
           onclick="redirectToPayment('${package.id}')">Book Now</a>
@@ -1052,7 +1053,7 @@ function renderPackages(data) {
     container.appendChild(packageElement);
 
  const modalElement = document.createElement('div');
-//   modalElement.id = `${modalId}`;
+  modalElement.id = `${modalId}`;
   modalElement.className = 'modal_2';
   modalElement.style.border = 'none';
 
@@ -1062,24 +1063,33 @@ function renderPackages(data) {
     </div>
     <hr style="margin: 0 0;">
     <div class="modal-content_1" style="border:none; text-align: left;">
+        
       <p>${package.description}</p>
     </div>
   `;
 
-
+console.log(package.description)
   container.appendChild(modalElement);
 
   });
 }
 
-function openModal(modalId, content) {
+// function openModal(modalId, content) {
+//     console.log(content)
+//   const modal = document.getElementById(modalId);
+//   if (modal) {
+//     console.log(modal);
+//     modal.style.display = 'block';
+//   } else {
+//     console.error(`Modal element with ID '${modalId}' not found.`);
+//   }
+// }
+
+function openModal(modalId, packageId) {
   const modal = document.getElementById(modalId);
-  if (modal) {
-    console.log(modal);
-    modal.style.display = 'block';
-  } else {
-    console.error(`Modal element with ID '${modalId}' not found.`);
-  }
+  const packageDescription = allpackages.find((package) => package._id === packageId).description;
+  modal.querySelector('.modal-content_1 p').textContent = packageDescription;
+  modal.style.display = 'block';
 }
 
 function closeModal(modalId) {

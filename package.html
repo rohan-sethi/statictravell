@@ -34,6 +34,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+     <!--  country Flag  css  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" />
     <style>
 
 
@@ -214,11 +217,11 @@
 
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number">
-                                        <label for="number">Phone number</label>
+                                        <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number" style="padding: 16px 51px;">
+                                        <label for="number"></label>
 
                                     </div>
-                                </div>    
+                                </div>
                                 <!-- <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
@@ -420,6 +423,10 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+       <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
+   
 
     <!-- Template Javascript -->
     <script src="js/main.js">
@@ -473,270 +480,20 @@
             
 //         }
 //         // functio for show error message 
+var input = document.querySelector("#number");
+intlTelInput(input, {
+    allowExtensions: true,
+    autoFormat: false,
+    autoHideDialCode: false,
+    autoPlaceholder: false,
+    defaultCountry: "in",
+    nationalMode: false,
+    numberType: "MOBILE",
+    onlyCountries: ['in','us','ca'],
+    preventInvalidNumbers: true,
+    utilsScript: "lib/libphonenumber/build/utils.js"
 
-function TourvalidateForm() {
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let destination = document.getElementById('select1');
-    let message = document.getElementById('message');
-    let date = document.getElementById('date');
-
-    if (name.value.trim() === '' || 
-        email.value.trim() === '' || 
-        message.value.trim() === '' ||
-        date.value.trim() === '' ||undefined
-        ) 
-        {
-        
-        alert('Please fill the all  fields.');
-        return false;
-    } else {
-        showThankYouPopup();
-        return true;
-    }
-}
-
-function showError(input, errorMessage) {
-       let parent = input.parentElement;
-       let errorElement = parent.querySelector('.error-message');
-
-            if (!errorElement) {
-                errorElement = document.createElement('div');
-                errorElement.className = 'error-message';
-                parent.appendChild(errorElement);
-            }
-
-            errorElement.innerText = errorMessage;
-        }
- function hideError(input) {
-     let parent = input.parentElement;
-     let errorElement = parent.querySelector('.error-message');
-            if (errorElement) {
-                errorElement.innerText = ''; 
-            }
-        }         
-
-function redirectToPayment(packageId) {
-console.log(`Redirecting to payment for package with ID: ${packageId}`);
-window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
-}
-        
-const config = {
-  phoneNumber: '7895923294',
-  apiEndpoint: `https://katchintours.swiftexwallet.com/api/package/get-all-package-open?phoneNumber=`,
-  razorpayPaymentURL: 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'
-};
-
-async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    console.log(response)
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.status}`);
-    }
-    return response.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
-
-
-function renderPackages(data) {
-  const container = document.getElementById('packg_card_container');
-  const defaultPackagesToShow = 3;
-
-  if (!data || !data.packages || !Array.isArray(data.packages)) {
-    console.error('Invalid data format:', data);
-    return;
-  }
-
-  const packages = data.packages.slice(0, defaultPackagesToShow); // Show only the first three packages
-  packages.forEach((package) => {
-    const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
-    const packageElement = document.createElement('div');
-    packageElement.className = 'col-lg-4 col-md-6';
-    const modalId = `descriptionModal${package._id}`;
-
-    packageElement.innerHTML = `
-      <div class="package-item h-100 position-relative">
-        <div class="overflow-hidden" style='height:300px'>
-          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
-        </div>
-        <div class="d-flex border-bottom">
-   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
-   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
-   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
- </div>
- <div class="text-center p-4">
- <h3 class="mb-0">${package.price} INR</h3>
- <div class="mb-3">
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-     </div>
-     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
-
-        <a class="btn btn-sm btn-primary px-3 border-end"
-          style="border-radius: 30px 0 0 30px;"
-          onclick="openModal('${modalId}', '${package.description}')">Read More</a>
-        <a class="btn btn-sm btn-primary px-3"
-          style="border-radius: 0 30px 30px 0;"
-          onclick="redirectToPayment('${package.id}')">Book Now</a>
-          
-          <div id="${modalId}" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none;text-align: left;">
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
-                                </div>
-      </div>
-    `;
-
-
-    container.appendChild(packageElement);
-
-    const modalElement = document.createElement('div');
-//   modalElement.id = `${modalId}`;
-  modalElement.className = 'modal_2';
-  modalElement.style.border = 'none';
-
-  modalElement.innerHTML = `
-    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
-        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
-    </div>
-    <hr style="margin: 0 0;">
-    <div class="modal-content_1" style="border:none; text-align: left;">
-      <p>${package.description}</p>
-    </div>
-  `;
-
-
-  container.appendChild(modalElement);
-
-  });
-
-  //  if there are more packages to show
-  if (data.packages.length > defaultPackagesToShow) {
-    const viewMoreButton = document.createElement('button');
-    viewMoreButton.className = ' viewMoreBtn';
-    viewMoreButton.innerText = 'View More';
-    viewMoreButton.addEventListener('click', function () {
-      container.innerHTML = ''; 
-      data.packages.forEach((package) => {
-        const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
-        const packageElement = document.createElement('div');
-        packageElement.className = 'col-lg-4 col-md-6';
-        const modalId = `descriptionModal${package._id}`;
-
-        packageElement.innerHTML = `
-      <div class="package-item h-100 position-relative">
-        <div class="overflow-hidden" style='height:300px'>
-          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
-        </div>
-        <div class="d-flex border-bottom">
-   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
-   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
-   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
- </div>
- <div class="text-center p-4">
- <h3 class="mb-0">${package.price} INR</h3>
- <div class="mb-3">
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-     </div>
-     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
-
-        <a class="btn btn-sm btn-primary px-3 border-end"
-          style="border-radius: 30px 0 0 30px;"
-          onclick="openModal('${modalId}', '${package.description}')">Read More</a>
-        <a class="btn btn-sm btn-primary px-3"
-          style="border-radius: 0 30px 30px 0;"
-          onclick="redirectToPayment('${package.id}')">Book Now</a>
-          
-          <div id="${modalId}" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none;text-align: left;">
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
-                                </div>
-      </div>
-    `;
-
-        container.appendChild(packageElement);
-
-
-        const modalElement = document.createElement('div');
-//   modalElement.id = `${modalId}`;
-  modalElement.className = 'modal_2';
-  modalElement.style.border = 'none';
-
-  modalElement.innerHTML = `
-    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
-        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
-    </div>
-    <hr style="margin: 0 0;">
-    <div class="modal-content_1" style="border:none; text-align: left;">
-      <p>${package.description}</p>
-    </div>
-  `;
-
-
-  container.appendChild(modalElement);
-
-      });
-    });
-
-    container.appendChild(viewMoreButton);
-  }
-}
-
-
-function openModal(modalId, content) {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    console.log(modal);
-    modal.style.display = 'block';
-  } else {
-    console.error(`Modal element with ID '${modalId}' not found.`);
-  }
-}
-
-function closeModal(modalId) {
-  console.log('Closing modal:', modalId);
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.style.display = 'none';
-  } else {
-    console.error(`Modal element with ID '${modalId}' not found.`);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const packages = await fetchData(config.apiEndpoint + config.phoneNumber);
-    if (packages) {
-      renderPackages(packages);
-    }
-  } catch (error) {
-    console.error(' somthine went wrong:', error);
-  }
 });
-
-
-function showThankYouPopup() {
-      document.getElementById('customModal').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
-    
-function hideThankYouPopup() {
-      document.getElementById('customModal').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-    }
 
 async function submitFormData() {
     const apiUrl = "https://katchintours.swiftexwallet.com/api/form/add-form";
@@ -799,16 +556,21 @@ function validateForm() {
         return false;
     }
 
-    const trnumberPattern = /^\d{10}$/;
-    // if (!trnumberPattern.test(trnumber)) {
-    //     alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
-    //     return false;
-    // }
-   
+    const trnumberPattern = /^\+[1-9]\d{7,11}$/;
+
     if (!trnumberPattern.test(mnumber)) {
         alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
         return false;
     }
+   
+    // if (!trnumberPattern.test(mnumber)) {
+    //     alert('Please enter a valid 10-digit integer  Phone Number.');
+    //     return false;
+    // }
+
+    // if(onlyCountries){
+
+    // }
     return true;
 }
 
@@ -819,6 +581,290 @@ function onFormSubmit() {
         showThankYouPopup();
     }
 }
+
+
+
+// function TourvalidateForm() {
+//     let name = document.getElementById('name');
+//     let email = document.getElementById('email');
+//     let destination = document.getElementById('select1');
+//     let message = document.getElementById('message');
+//     let date = document.getElementById('date');
+
+//     if (name.value.trim() === '' || 
+//         email.value.trim() === '' || 
+//         message.value.trim() === '' ||
+//         date.value.trim() === '' ||undefined
+//         ) 
+//         {
+        
+//         alert('Please fill the all  fields.');
+//         return false;
+//     } else {
+//         showThankYouPopup();
+//         return true;
+//     }
+// }
+
+function showError(input, errorMessage) {
+       let parent = input.parentElement;
+       let errorElement = parent.querySelector('.error-message');
+
+            if (!errorElement) {
+                errorElement = document.createElement('div');
+                errorElement.className = 'error-message';
+                parent.appendChild(errorElement);
+            }
+
+            errorElement.innerText = errorMessage;
+        }
+ function hideError(input) {
+     let parent = input.parentElement;
+     let errorElement = parent.querySelector('.error-message');
+            if (errorElement) {
+                errorElement.innerText = ''; 
+            }
+        }         
+
+function redirectToPayment(packageId) {
+console.log(`Redirecting to payment for package with ID: ${packageId}`);
+window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
+}
+        
+const config = {
+  phoneNumber: '7895923294',
+  apiEndpoint: `https://katchintours.swiftexwallet.com/api/package/get-all-package-open?phoneNumber=`,
+  razorpayPaymentURL: 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'
+};
+
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    console.log(response)
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+
+let packages;
+function renderPackages(data) {
+  const container = document.getElementById('packg_card_container');
+  const defaultPackagesToShow = 3;
+
+  if (!data || !data.packages || !Array.isArray(data.packages)) {
+    console.error('Invalid data format:', data);
+    return;
+  }
+
+ packages = data.packages.slice(0, defaultPackagesToShow); // Show only the first three packages
+  packages.forEach((package) => {
+    const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
+    const packageElement = document.createElement('div');
+    packageElement.className = 'col-lg-4 col-md-6';
+    const modalId = `descriptionModal${package._id}`;
+
+    packageElement.innerHTML = `
+      <div class="package-item h-100 position-relative">
+        <div class="overflow-hidden" style='height:300px'>
+          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
+        </div>
+        <div class="d-flex border-bottom">
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+ </div>
+ <div class="text-center p-4">
+ <h3 class="mb-0">${package.price} INR</h3>
+ <div class="mb-3">
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+     </div>
+     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
+
+        <a class="btn btn-sm btn-primary px-3 border-end"
+          style="border-radius: 30px 0 0 30px;"
+          onclick="openModal('${modalId}', '${package._id}')">Read More</a>
+        <a class="btn btn-sm btn-primary px-3"
+          style="border-radius: 0 30px 30px 0;"
+          onclick="redirectToPayment('${package.id}')">Book Now</a>
+          
+          <div id="${modalId}" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none;text-align: left;">
+                                   
+                                </div>
+      </div>
+    `;
+
+
+    container.appendChild(packageElement);
+
+    const modalElement = document.createElement('div');
+//   modalElement.id = `${modalId}`;
+  modalElement.className = 'modal_2';
+  modalElement.style.border = 'none';
+
+  modalElement.innerHTML = `
+    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
+        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+    </div>
+    <hr style="margin: 0 0;">
+    <div class="modal-content_1" style="border:none; text-align: left;">
+      <p>${package.description}</p>
+    </div>
+  `;
+
+
+  container.appendChild(modalElement);
+
+  });
+
+  //  if there are more packages to show
+  if (data.packages.length > defaultPackagesToShow) {
+    const viewMoreButton = document.createElement('button');
+    viewMoreButton.className = 'viewMoreBtn';
+    viewMoreButton.innerText = 'View More';
+    viewMoreButton.addEventListener('click', function () {
+      container.innerHTML = ''; 
+      packages =  data.packages;
+      packages.forEach((package) => {
+        const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
+        const packageElement = document.createElement('div');
+        packageElement.className = 'col-lg-4 col-md-6';
+        const modalId = `descriptionModal${package._id}`;
+
+        packageElement.innerHTML = `
+      <div class="package-item h-100 position-relative">
+        <div class="overflow-hidden" style='height:300px'>
+          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
+        </div>
+        <div class="d-flex border-bottom">
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+ </div>
+ <div class="text-center p-4">
+ <h3 class="mb-0">${package.price} INR</h3>
+ <div class="mb-3">
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+         <small class="fa fa-star text-primary"></small>
+     </div>
+     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
+
+        <a class="btn btn-sm btn-primary px-3 border-end"
+          style="border-radius: 30px 0 0 30px;"
+          onclick="openModal('${modalId}', '${package._id}')">Read More</a>
+        <a class="btn btn-sm btn-primary px-3"
+          style="border-radius: 0 30px 30px 0;"
+          onclick="redirectToPayment('${package.id}')">Book Now</a>
+          
+          <div id="${modalId}" class="modal_2" style="border: none;">
+                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
+                                <hr style="margin: 0 0;">
+                                <div class="modal-content_1" style="border:none;text-align: left;">
+                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+                                </div>
+      </div>
+    `;
+
+        container.appendChild(packageElement);
+
+
+        const modalElement = document.createElement('div');
+//   modalElement.id = `${modalId}`;
+  modalElement.className = 'modal_2';
+  modalElement.style.border = 'none';
+
+  modalElement.innerHTML = `
+    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
+        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+    </div>
+    <hr style="margin: 0 0;">
+    <div class="modal-content_1" style="border:none; text-align: left;">
+      <p>${package.description}</p>
+    </div>
+  `;
+
+
+  container.appendChild(modalElement);
+
+      });
+    });
+
+    container.appendChild(viewMoreButton);
+  }
+}
+
+
+// function openModal(modalId, content) {
+//   const modal = document.getElementById(modalId);
+//   if (modal) {
+//     console.log(modal);
+//     modal.style.display = 'block';
+//   } else {
+//     console.error(`Modal element with ID '${modalId}' not found.`);
+//   }
+// }
+function openModal(modalId, packageId) {
+  const modal = document.getElementById(modalId);
+
+  if (!modal) {
+    console.error(`Modal element with ID '${modalId}' not found.`);
+    return;
+  }
+
+  const packageDescription = packages.find((package) => package._id === packageId).description;
+  modal.querySelector('.modal-content_1 ').textContent = packageDescription;
+  modal.style.display = 'block';
+}
+
+
+function closeModal(modalId) {
+  console.log('Closing modal:', modalId);
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'none';
+  } else {
+    console.error(`Modal element with ID '${modalId}' not found.`);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const packages = await fetchData(config.apiEndpoint + config.phoneNumber);
+    if (packages) {
+      renderPackages(packages);
+    }
+  } catch (error) {
+    console.error(' somthine went wrong:', error);
+  }
+});
+
+
+function showThankYouPopup() {
+      document.getElementById('customModal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    
+function hideThankYouPopup() {
+      document.getElementById('customModal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+
+
 
 
 
