@@ -109,7 +109,8 @@
 
 <div class="form-group mt-3">
     <label for="registerPhone">Phone:</label>
-    <input type="text" id="registerPhone" class="form-control" name="phone" oninput="clearError('registerPhone')" required><br>
+    <input type="phone" id="registerPhone" class="form-control" name="phone"   inputmode="numeric"
+    pattern="[0-9\s]{13,19}" oninput="clearError('registerPhone')"  required><br>
     <div id="phoneError" class="error"></div>
 </div>
 
@@ -304,27 +305,38 @@ async function registerUser() {
 
 
          if (!name) {
+          alert('Name is required')
           throw { field:'registerName', message: 'Name is required' };
         }
 
         if (!email) {
+          alert('Email is required')
           throw { field: 'registerEmail', message: 'Email is required' };
         } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+          alert( 'Invalid email format')
           throw { field: 'registerEmail', message: 'Invalid email format' };
         }
 
         if (!password) {
+          alert(  'Password is required' )
           throw { field: 'registerPassword', message: 'Password is required' };
+
         } else if (password.length < 8) {
+          alert( 'Password must be at least 8 characters' )
           throw { field: 'registerPassword', message: 'Password must be at least 8 characters' };
+
         }
 
         if (!phoneNumber) {
-          throw { field: 'registerPhone', message: 'Phone Number is required' };
+          alert( 'Phone Number is required'  )     
+          throw { field: 'registerPhone', message: 'Phone Number is required' };  
         } else if (!/^\d+$/.test(phoneNumber)) {
-          throw { field: 'registerPhone', message: 'Phone Number must be an integer' };
+          alert( 'Phone Number must be an integer'  )   
+          throw { field: 'registerPhone', message: 'Phone Number must be an integer' };    
         } else if (phoneNumber.length !== 10) {
+          alert( 'Phone Number must be 10 digits'  )   
           throw { field: 'registerPhone', message: 'Phone Number must be 10 digits' };
+
         }
 
 

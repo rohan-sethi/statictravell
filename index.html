@@ -867,11 +867,7 @@ intlTelInput(input, {
 //     console.error("Error fetching country information");
 //   });
 
-
-
-
-
-    function showThankYouPopup() {
+function showThankYouPopup() {
       document.getElementById('customModal').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
     }
@@ -945,7 +941,7 @@ function validateForm() {
     const trnumberPattern = /^\+[1-9]\d{7,11}$/;
 
     if (!trnumberPattern.test(mnumber)) {
-        alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
+        alert('Please enter a valid 10-digit integer for Phone Number.');
         return false;
     }
    
@@ -1073,17 +1069,6 @@ console.log(package.description)
 
   });
 }
-
-// function openModal(modalId, content) {
-//     console.log(content)
-//   const modal = document.getElementById(modalId);
-//   if (modal) {
-//     console.log(modal);
-//     modal.style.display = 'block';
-//   } else {
-//     console.error(`Modal element with ID '${modalId}' not found.`);
-//   }
-// }
 
 function openModal(modalId, packageId) {
   const modal = document.getElementById(modalId);
