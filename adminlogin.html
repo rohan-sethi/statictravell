@@ -27,8 +27,54 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      
      <style>
-        .error{
-            color: red;
+        .error-message {
+            color: rgb(255, 17, 17);
+            font-size: 16px;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .custom-popup {
+            border: 1px solid red;
+            display: none;
+            position: fixed;
+            background-color: #ffffff;
+            top:18%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            padding: 30px 80px;
+            color:black;
+            border-radius: 12px;
+            z-index: 999;
+        }
+       
+
+        .custom-popup_2 {
+            border: 1px solid white;
+            display: none;
+            position: fixed;
+            background-color:rgb(28, 195, 28);
+            top:8%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            padding: 30px 80px;
+            color:white;
+            border-radius: 12px;
+            z-index: 999;
+        }
+
+        .custom-popup_3 {
+            border: 1px solid red;
+            display: none;
+            position: fixed;
+            background-color: #ffffff;
+            top:8%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            padding: 30px 80px;
+            color:black;
+            border-radius: 12px;
+            z-index: 999;
         }
      </style>
    </head>
@@ -48,14 +94,16 @@
             <div class="col-lg-5 col-md-5 Small shadow p-5 position-absolute " style="border-radius: 10px; top: 25%; border: 1px solid #e7e6e65c; background-color: white;">
                 <div class="text-center"><h2> Admin Login</h2></div>
                 <form id="loginForm">
-                    <div class="form-group mt-3">
+                    <div class="form-group mt-3 position-relative">
                         <label for="email">Email:</label>
                         <input type="email" id="email" class="form-control pt-2 pb-2" name="email" style="background: #ffffff16; border-radius: 8px; " required><br>
+                        <div id="emailError" class="error-message position-absolute" style="top:70%"></div>
                     </div>
     
-                    <div class="form-group mt-3">
+                    <div class="form-group mt-3 position-relative">
                         <label for="password">Password:</label>
                         <input type="password" id="password" class="form-control pt-2 pb-2" name="password" style="background: #ffffff16; border-radius: 8px; " required><br>
+                        <div id="passwordError" class="error-message position-absolute" style="top:70%"></div>
                     </div> 
                     <div class="d-flex justify-content-center">
                         <button type="button" style="width:100%; border-radius: 8px;" class= "btn btn-primary mt-4 pt-2 pb-2"  id="submitButton"  onclick="login()">Login</button>
@@ -65,6 +113,7 @@
         </div>
     
     </div>
+    <div id="customPopup" class="custom-popup"></div>
 </section>
 
 
@@ -76,7 +125,7 @@
         <div>
           <div style="font-size: 20px; font-weight: bold; color: #000000;">Admin</div>
         </div>
-          <div><button class="btn btn-primary" onclick="togeluserRgister()"><i class="fa fa-plus" aria-hidden="true"></i> Register-user </button></div>
+          <div><button class="btn btn-primary" onclick="togeluserRgister()"><i class="fa fa-plus" aria-hidden="true"></i> Add-User </button></div>
       </div>
 
 
@@ -89,29 +138,29 @@
                 <form id="signupForm">
 
 
-     <div class="form-group mt-3">
+     <div class="form-group mt-3 position-relative">
     <label for="registerName">Name:</label>
-    <input type="text" id="registerName" class="form-control" name="name" oninput="clearError('registerName')" required ><br>
-    <div id="nameError" class="error"></div>
+    <input type="text" id="registerName" class="form-control" name="name" required >
+    <div id="registerNameError" class="error-message position-absolute" style="top:70%"></div><br>
 </div>
 
-<div class="form-group mt-3">
+<div class="form-group mt-3 position-relative">
     <label for="registerEmail">Email:</label>
-    <input type="email" id="registerEmail" class="form-control" name="email" oninput="clearError('registerEmail')" required><br>
-    <div id="emailError" class="error"></div>
+    <input type="email" id="registerEmail" class="form-control" name="email"  required>
+    <div id="registerEmailError" class="error-message position-absolute" style="top:70%"></div><br>
 </div>
 
-<div class="form-group mt-3">
+<div class="form-group mt-3 position-relative">
     <label for="registerPassword">Password:</label>
-    <input type="password" id="registerPassword" class="form-control" name="password" oninput="clearError('registerPassword')" required><br>
-    <div id="passwordError" class="error"></div>
+    <input type="password" id="registerPassword" class="form-control" name="password"  required>
+    <div id="registerPasswordError" class="error-message position-absolute" style="top:70%"></div><br>
 </div>
 
-<div class="form-group mt-3">
+<div class="form-group mt-3 position-relative">
     <label for="registerPhone">Phone:</label>
     <input type="phone" id="registerPhone" class="form-control" name="phone"   inputmode="numeric"
-    pattern="[0-9\s]{13,19}" oninput="clearError('registerPhone')"  required><br>
-    <div id="phoneError" class="error"></div>
+    pattern="[0-9\s]{13,19}" required><br>
+    <div id="registerPhoneError" class="error-message position-absolute" style="top:70%"></div><br>
 </div>
 
                     <div class="d-flex justify-content-center">
@@ -148,7 +197,8 @@
           </div>
         </div>
       </div>
-      
+      <div id="customPopup2" class="custom-popup_2"></div>
+      <div id="customPopup3" class="custom-popup_3"></div>
 </section>
 
 
@@ -169,27 +219,47 @@
     </script>
    <script>
 
-function displayError(inputId, error) {
-    const errorDiv = document.getElementById(`${inputId}Error`);
-    console.log(errorDiv)
-    if (errorDiv) {
-        errorDiv.innerText = error;
-        errorDiv.style.display = 'block';
-    } else {
+function displayErrorMessage(fieldId, message) {
+    const errorElement = document.getElementById(`${fieldId}Error`);
+    
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block'; // Ensure the element is visible
+
+        setTimeout(() => {
+            errorElement.style.display = 'none';
+        }, 5000);
     }
 }
-
-function clearError(inputId) {
-    const errorDiv = document.getElementById(`${inputId}Error`);
-    if (errorDiv) {
-        errorDiv.innerText = '';
-        errorDiv.style.display = 'none';
-    } else {
-       
+function displayPopup(message) {
+  console.log("hello ")
+        const popupElement = document.getElementById('customPopup');
+        popupElement.textContent = message;
+        popupElement.style.display = 'block';
+        setTimeout(() => {
+            popupElement.style.display = 'none';
+        }, 3000);
     }
-}
 
- function toggleButtonState(isDisabled) {
+    function displayPopup2(message) {
+        const popupElement = document.getElementById('customPopup3');
+        popupElement.textContent = message;
+        popupElement.style.display = 'block';
+        setTimeout(() => {
+            popupElement.style.display = 'none';
+        }, 3000);
+    }
+
+    function displayPopupsuccess(message) {
+        const popupElement = document.getElementById('customPopup2');
+        popupElement.textContent = message;
+        popupElement.style.display = 'block';
+        setTimeout(() => {
+            popupElement.style.display = 'none';
+        }, 3000);
+    }
+
+        function toggleButtonState(isDisabled) {
  const submitButton = document.getElementById('submitButton');
  submitButton.disabled = isDisabled;
 }
@@ -211,6 +281,8 @@ function clearError(inputId) {
             }
         }
 
+
+
         function login() {
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
@@ -225,19 +297,30 @@ function clearError(inputId) {
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+            if(!email){
+              displayErrorMessage('email', '! please enter your registered email')
+              toggleButtonState(false);
+            }
+
             if (!emailRegex.test(email)) {
-                alert('Invalid email format');
+              displayErrorMessage('email', '! please enter valid email')
                 emailInput.style.borderColor = 'red';
                 toggleButtonState(false);
                 return;
             }
-
-            if (!email || !password) {
-                alert('Please enter both email and password');
+            if (!password) {
+              displayErrorMessage('password', '! please enter your registered Password')
                 toggleButtonState(false);
                 return;
             }
+             
+            if (password.length < 8) {
+    displayErrorMessage('password', '! password must have at least 8 characters');
+    toggleButtonState(false);
+    return;
+}
 
+         
             const loginCredentials = {
                 email: email,
                 password: password,
@@ -256,7 +339,7 @@ function clearError(inputId) {
             .then(data => {
                 if (data.error) {
                     console.error('Login failed:', data.error);
-                    alert('Invalid Credentials');
+                    displayPopup('Invalid Credentials')
                     emailInput.style.borderColor = 'red';
                     passwordInput.style.borderColor = 'red';
                     toggleButtonState(false);
@@ -278,26 +361,7 @@ function clearError(inputId) {
         document.getElementById('password').addEventListener('blur', handleInputBlur);
 
 async function registerUser() {
-    function displayError(inputId, error) {
-      const errorDiv = document.getElementById(`${inputId}Error`);
-      errorDiv.innerText = error;
-      errorDiv.style.display = 'block';
-    }
-    
-    function clearError(inputId) {
-      const errorDiv = document.getElementById(`${inputId}Error`);
-      errorDiv.innerText = '';
-      errorDiv.style.display = 'none';
-    }
-
     try {
-
-        document.querySelectorAll('.error').forEach(errorDiv => {
-          errorDiv.innerText = '';
-          errorDiv.style.display = 'none';
-        });
-
-
         const name = document.getElementById('registerName').value;
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
@@ -305,37 +369,36 @@ async function registerUser() {
 
 
          if (!name) {
-          alert('Name is required')
-          throw { field:'registerName', message: 'Name is required' };
+          displayErrorMessage('registerName', '! please enter name')
+          return
         }
 
         if (!email) {
-          alert('Email is required')
-          throw { field: 'registerEmail', message: 'Email is required' };
+          displayErrorMessage('registerEmail', '! please enter email')
+          return
         } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-          alert( 'Invalid email format')
-          throw { field: 'registerEmail', message: 'Invalid email format' };
+          displayErrorMessage('registerEmail', '! please enter valid email')
+           return
         }
 
         if (!password) {
-          alert(  'Password is required' )
-          throw { field: 'registerPassword', message: 'Password is required' };
+          displayErrorMessage('registerPassword', '! please enter password')
+          return
 
         } else if (password.length < 8) {
-          alert( 'Password must be at least 8 characters' )
-          throw { field: 'registerPassword', message: 'Password must be at least 8 characters' };
-
+          displayErrorMessage('registerPassword', '! password must have 8 digits')
+          return
         }
 
         if (!phoneNumber) {
-          alert( 'Phone Number is required'  )     
-          throw { field: 'registerPhone', message: 'Phone Number is required' };  
+          displayErrorMessage('registerPhone', '! Phone Number is required')
+         return  
         } else if (!/^\d+$/.test(phoneNumber)) {
-          alert( 'Phone Number must be an integer'  )   
-          throw { field: 'registerPhone', message: 'Phone Number must be an integer' };    
+          displayErrorMessage('registerPhone', 'Phone Number must be an integer')
+          return   
         } else if (phoneNumber.length !== 10) {
-          alert( 'Phone Number must be 10 digits'  )   
-          throw { field: 'registerPhone', message: 'Phone Number must be 10 digits' };
+          displayErrorMessage('registerPhone', 'Phone Number must be 10 digits')
+          return
 
         }
 
@@ -367,11 +430,30 @@ async function registerUser() {
         const data = await response.json();
 
         if (data.error) {
-            console.error('Registration failed:', data.error);
-            alert('Something went wrong');
-        } else {
+   
+    if (data.error.password) {
+        console.error('Password error:', data.error.password);
+        displayPopup2(data.error.password)
+     
+    }
 
-            alert('user registred succsfully');
+    if (data.error.name) {
+        console.error('Name error:', data.error.name);
+        displayPopup2(data.error.name)
+    }
+
+    if (data.error.email) {
+      console.error('Name error:',data.error.email);
+      displayPopup2(data.error.email)
+      // displayPopupsuccess('email error')
+        // console.error('Email error:', data.error.email);
+            
+    }
+  }
+       else {
+
+            // alert('user registred succsfully');
+            displayPopupsuccess('user registred succsfully')
             getAllrgisterUser()
             console.log('Account create successfully. Please login', data);
             document.getElementById('registerName').value = '';
@@ -383,6 +465,8 @@ async function registerUser() {
             document.getElementById("registerContainer").style.display = "block";
             document.getElementById('register').style.display='none'
         }
+      
+      
 
     } catch (error) {
         console.error('Error:', error.message);
@@ -396,6 +480,8 @@ function togeluserRgister (){
        
       }
 }
+
+
 
 function closeForm (){
 let closeFormContainer = document.getElementById('register');
@@ -441,7 +527,7 @@ function updateTable(data) {
       <td>${user.name}</td>
       <td>${user.email}</td>
       <td>${user.phoneNumber}</td>
-      <td><button class='btn btn-danger' onclick="DeleteUser('${user._id}')" style={border:'none':, outline:'none'}> <i class="fa fa-minus-circle" aria-hidden="true"></i> Removeuser</button></td>
+      <td><button class='btn btn-danger' onclick="DeleteUser('${user._id}')" style={border:'none':, outline:'none'}> <i class="fa fa-minus-circle" aria-hidden="true"></i> Remove-User</button></td>
     `;
     tableBody.appendChild(row);
   });
@@ -468,8 +554,7 @@ async function DeleteUser(userId) {
         if (!response.ok) {
             throw new Error(`Error deleting user: ${response.status} - ${response.statusText}`);
         }
-      
-         alert('User deleted successfully')
+         displayPopupsuccess('User deleted successfully')
         console.log('User deleted successfully');
         getAllrgisterUser()
     } catch (error) {

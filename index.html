@@ -34,8 +34,31 @@
 
     <!--  country Flag  css  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" />
-    <!-- JS -->
 
+    <style>
+        .error-message {
+            color: rgb(255, 17, 17);
+            font-size: 16px;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .custom-popup {
+            display: none;
+            position: fixed;
+            top:8%;
+            right:0%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            background-color: rgba(229, 42, 42, 0.95);
+            color: white;
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+    </style>
+
+        <!-- JS -->
     <!--Start of Tawk.to Script-->
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -483,12 +506,14 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control bg-transparent" id="name" placeholder="Your Name">
                                         <label for="name">Your Name</label>
+                                        <div id="nameError" class="error-message"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="email" class="form-control bg-transparent" id="email" placeholder="Your Email">
                                         <label for="email">Your Email</label>
+                                        <div id="emailError" class="error-message"></div>
                                     </div>
                                 </div>
 
@@ -497,13 +522,10 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number" style="padding: 16px 51px;">
                                         <label for="number"></label>
+                                        <div id="numberError" class="error-message"></div>
 
                                     </div>
                                 </div>
-
-                    
-
-                                
                                 <!-- <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
@@ -514,6 +536,7 @@
                                     <div class="form-floating">
                                     <input type="date" class="form-control bg-transparent datetimepicker-input" id="date" placeholder="Date" data-target="#date3" data-toggle="datetimepicker">
                                     <label for="datetime">Date</label>
+                                    <div id="dateError" class="error-message"></div>
                                     </div>                               
                                 </div>
                                 <div class="col-md-6">
@@ -530,18 +553,20 @@
                                             <option value="Rishikesh">Rishikesh</option>
                                         </select>
                                         <label for="select1">Destination</label>
+                                        <div id="select1Error" class="error-message"></div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="hidden"" class="form-control bg-transparent" id="trphone" placeholder="Travel Phone">
+                                        <input type="hidden" class="form-control bg-transparent" id="trphone" placeholder="Travel Phone">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control bg-transparent" placeholder="Special Request" id="message" style="height: 100px"></textarea>
                                         <label for="message">Special Request</label>
+                                        <div id="messageError" class="error-message"></div>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -549,6 +574,8 @@
                                 </div>
                             </div>
                         </form>
+
+                       
                     </div>
                 </div>
             </div>
@@ -830,6 +857,15 @@
     <script src="js/main.js">
     </script>
 <script>
+function showThankYouPopup() {
+      document.getElementById('customModal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    
+function hideThankYouPopup() {
+      document.getElementById('customModal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
 
 
 var input = document.querySelector("#number");
@@ -846,36 +882,6 @@ intlTelInput(input, {
     utilsScript: "lib/libphonenumber/build/utils.js"
 
 });
-
-// function getCountryCode() {
-//     return $.get("https://ipinfo.io/json", function (response) {
-//       return response.country;
-//     });
-//   }
-//   getCountryCode().done(function (countryCode) {
-//     $("#number").intlTelInput({
-//       allowExtensions: true,
-//       autoFormat: false,
-//       autoHideDialCode: false,
-//       autoPlaceholder: false,
-//       defaultCountry: countryCode,
-//       nationalMode: false,
-//       numberType: "MOBILE",
-//       preventInvalidNumbers: true,
-//     });
-//   }).fail(function () {
-//     console.error("Error fetching country information");
-//   });
-
-function showThankYouPopup() {
-      document.getElementById('customModal').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
-    
-function hideThankYouPopup() {
-      document.getElementById('customModal').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-    }
 
 async function submitFormData() {
     const apiUrl = "https://katchintours.swiftexwallet.com/api/form/add-form";
@@ -925,38 +931,91 @@ function resetForm() {
 }
 
 function validateForm() {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const destination = document.getElementById('select1').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const date = document.getElementById('date').value.trim();
-    const mnumber = document.getElementById('number').value.trim();
-    const trnumber = document.getElementById('trphone').value.trim();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const destination = document.getElementById('select1').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const date = document.getElementById('date').value.trim();
+        const mnumber = document.getElementById('number').value.trim();
+        const trnumber = document.getElementById('trphone').value.trim();
 
-    if (name === '' || email === '' || message === '' || date === '' || mnumber === '' ) {
-        alert('Please fill out all fields.');
-        return false;
-    }
+        // clearErrorMessages();
 
-    const trnumberPattern = /^\+[1-9]\d{7,11}$/;
+        if (name === '') {
+            // displayPopup('Please enter your name.', 'name');
+            displayErrorMessage('name', '! Please enter your name.')
+            return false;
+        }
 
-    if (!trnumberPattern.test(mnumber)) {
-        alert('Please enter a valid 10-digit integer for Phone Number.');
-        return false;
-    }
+        if (email === '') {
+            // displayPopup('Please enter your email.', 'email');
+            displayErrorMessage('email','! Please enter your email.' );
+            return false;
+        }
+
+        if (mnumber  === '') {
+            // displayPopup('Please enter your mobilenumber .', 'mnuber');
+            displayErrorMessage('mnuber','! Please enter your mobilenumber .');
+            return false;
+        }
+
+        
+        const trnumberPattern = /^\+[1-9]\d{7,11}$/;
    
-    // if (!trnumberPattern.test(mnumber)) {
-    //     alert('Please enter a valid 10-digit integer  Phone Number.');
-    //     return false;
-    // }
 
-    // if(onlyCountries){
+        if (!trnumberPattern.test(mnumber)) {
+            // displayPopup('Please enter a valid 10-digit integer for the Travel Phone Number.');
+            displayErrorMessage('number','! Please enter a valid 10-digit integer for the Travel Phone Number.')
+            return false;
+        }
 
-    // }
-    return true;
+
+        if (date  === '') {
+            // displayPopup ('date','Please enter  date .'); 
+            displayErrorMessage('date', '! Please enter  date .',);
+
+            return false;
+        }
+        if (destination  === '') {
+            // displayPopup('Please enter your destination', 'destination');
+            displayErrorMessage('destination',' ! Please enter your destination');
+            return false;
+        }
+
+            
+        if ( message === '') {
+            // displayPopup('Please enter your message.', 'message');
+            displayErrorMessage('message','! Please enter your message.', );
+            return false;
+        }
+        
+    
+        return true;
+    }
+
+function displayErrorMessage(fieldId, message) {
+    const errorElement = document.getElementById(`${fieldId}Error`);
+    
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block'; // Ensure the element is visible
+
+        setTimeout(() => {
+            errorElement.style.display = 'none';
+        }, 3000);
+    }
 }
 
-function onFormSubmit() {
+function displayPopup(message) {
+        const popupElement = document.getElementById('customPopup');
+        popupElement.textContent = message;
+        popupElement.style.display = 'block';
+        setTimeout(() => {
+            popupElement.style.display = 'none';
+        }, 3000);
+    }
+
+    function onFormSubmit() {
     const isValid = validateForm();
     if (isValid) {
         submitFormData();
@@ -965,12 +1024,13 @@ function onFormSubmit() {
 }
 
 
+
 function redirectToPayment() {
             window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
         }
 
  const config = {
-  phoneNumber: '7895923294',
+  phoneNumber: '7895923295',
   apiEndpoint: `https://katchintours.swiftexwallet.com/api/package/get-all-package-open?phoneNumber=`,
   razorpayPaymentURL: 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'
 };

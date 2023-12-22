@@ -38,26 +38,26 @@
      <!--  country Flag  css  -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" />
     <style>
+        .error-message {
+            color: rgb(255, 17, 17);
+            font-size: 16px;
+            margin-top: 5px;
+            font-weight: 400;
+        }
 
+        .custom-popup {
+            display: none;
+            position: fixed;
+            top:8%;
+            right:0%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            background-color: rgba(229, 42, 42, 0.95);
+            color: white;
+            border-radius: 5px;
+            z-index: 999;
+        }
 
-  
-
-    .viewMoreBtn {
-      cursor: pointer;
-      background-color: #3498db;
-      color: #fff;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      max-width: 160px;
-      
-    }
-
-    .viewMoreBtn:hover {
-      background-color: #2980b9;
-    } 
     </style>
 </head>
 
@@ -205,12 +205,14 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control bg-transparent" id="name" placeholder="Your Name">
                                         <label for="name">Your Name</label>
+                                        <div id="nameError" class="error-message"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="email" class="form-control bg-transparent" id="email" placeholder="Your Email">
                                         <label for="email">Your Email</label>
+                                        <div id="emailError" class="error-message"></div>
                                     </div>
                                 </div>
 
@@ -219,6 +221,7 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control bg-transparent" id="number" placeholder="Your phone number" style="padding: 16px 51px;">
                                         <label for="number"></label>
+                                        <div id="numberError" class="error-message"></div>
 
                                     </div>
                                 </div>
@@ -232,6 +235,7 @@
                                     <div class="form-floating">
                                     <input type="date" class="form-control bg-transparent datetimepicker-input" id="date" placeholder="Date" data-target="#date3" data-toggle="datetimepicker">
                                     <label for="datetime">Date</label>
+                                    <div id="dateError" class="error-message"></div>
                                     </div>                               
                                 </div>
                                 <div class="col-md-6">
@@ -248,18 +252,20 @@
                                             <option value="Rishikesh">Rishikesh</option>
                                         </select>
                                         <label for="select1">Destination</label>
+                                        <div id="select1Error" class="error-message"></div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="hidden"" class="form-control bg-transparent" id="trphone" placeholder="Travel Phone">
+                                        <input type="hidden" class="form-control bg-transparent" id="trphone" placeholder="Travel Phone">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control bg-transparent" placeholder="Special Request" id="message" style="height: 100px"></textarea>
                                         <label for="message">Special Request</label>
+                                        <div id="messageError" class="error-message"></div>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -267,6 +273,8 @@
                                 </div>
                             </div>
                         </form>
+
+                       
                     </div>
                 </div>
             </div>
@@ -412,7 +420,7 @@
   </div>
   
   <div id="overlay" class="overlay"></div>
-
+  <div id="customPopup" class="custom-popup"></div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -432,6 +440,17 @@
     <script src="js/main.js">
     </script>
 <script>
+
+function showThankYouPopup() {
+      document.getElementById('customModal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    
+function hideThankYouPopup() {
+      document.getElementById('customModal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
 
 //   tour form validation 
 // function  TourvalidateForm() {
@@ -542,38 +561,122 @@ function resetForm() {
     document.getElementById("tourForm").reset();
 }
 
-function validateForm() {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const destination = document.getElementById('select1').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const date = document.getElementById('date').value.trim();
-    const mnumber = document.getElementById('number').value.trim();
-    const trnumber = document.getElementById('trphone').value.trim();
+// function validateForm() {
+//     const name = document.getElementById('name').value.trim();
+//     const email = document.getElementById('email').value.trim();
+//     const destination = document.getElementById('select1').value.trim();
+//     const message = document.getElementById('message').value.trim();
+//     const date = document.getElementById('date').value.trim();
+//     const mnumber = document.getElementById('number').value.trim();
+//     const trnumber = document.getElementById('trphone').value.trim();
 
-    if (name === '' || email === '' || message === '' || date === '' || mnumber === '' ) {
-        alert('Please fill out all fields.');
-        return false;
-    }
+//     if (name === '' || email === '' || message === '' || date === '' || mnumber === '' ) {
+//         displayErrorMessage('name', 'Please enter your name.');
+//         return false;
+//     }
 
-    const trnumberPattern = /^\+[1-9]\d{7,11}$/;
+//     const trnumberPattern = /^\+[1-9]\d{7,11}$/;
 
-    if (!trnumberPattern.test(mnumber)) {
-        alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
-        return false;
-    }
+//     if (!trnumberPattern.test(mnumber)) {
+//         alert('Please enter a valid 10-digit integer for the Travel Phone Number.');
+//         return false;
+//     }
    
-    // if (!trnumberPattern.test(mnumber)) {
-    //     alert('Please enter a valid 10-digit integer  Phone Number.');
-    //     return false;
-    // }
+//     // if (!trnumberPattern.test(mnumber)) {
+//     //     alert('Please enter a valid 10-digit integer  Phone Number.');
+//     //     return false;
+//     // }
 
-    // if(onlyCountries){
+//     // if(onlyCountries){
 
-    // }
-    return true;
+//     // }
+//     return true;
+// }
+
+function validateForm() {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const destination = document.getElementById('select1').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const date = document.getElementById('date').value.trim();
+        const mnumber = document.getElementById('number').value.trim();
+        const trnumber = document.getElementById('trphone').value.trim();
+
+        // clearErrorMessages();
+
+        if (name === '') {
+            // displayPopup('Please enter your name.', 'name');
+            displayErrorMessage('name', '! Please enter your name.')
+            return false;
+        }
+
+        if (email === '') {
+            // displayPopup('Please enter your email.', 'email');
+            displayErrorMessage('email','! Please enter your email.' );
+            return false;
+        }
+
+        if (mnumber  === '') {
+            // displayPopup('Please enter your mobilenumber .', 'mnuber');
+            displayErrorMessage('mnuber','! Please enter your mobilenumber .');
+            return false;
+        }
+
+        
+        const trnumberPattern = /^\+[1-9]\d{7,11}$/;
+   
+
+        if (!trnumberPattern.test(mnumber)) {
+            // displayPopup('Please enter a valid 10-digit integer for the Travel Phone Number.');
+            displayErrorMessage('number','! Please enter a valid 10-digit integer for the Travel Phone Number.')
+            return false;
+        }
+
+
+        if (date  === '') {
+            // displayPopup ('date','Please enter  date .'); 
+            displayErrorMessage('date', '! Please enter  date .',);
+
+            return false;
+        }
+        if (destination  === '') {
+            // displayPopup('Please enter your destination', 'destination');
+            displayErrorMessage('destination',' ! Please enter your destination');
+            return false;
+        }
+
+            
+        if ( message === '') {
+            // displayPopup('Please enter your message.', 'message');
+            displayErrorMessage('message','! Please enter your message.', );
+            return false;
+        }
+        
+    
+        return true;
+    }
+
+function displayErrorMessage(fieldId, message) {
+    const errorElement = document.getElementById(`${fieldId}Error`);
+    
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block'; // Ensure the element is visible
+
+        setTimeout(() => {
+            errorElement.style.display = 'none';
+        }, 3000);
+    }
 }
 
+function displayPopup(message) {
+        const popupElement = document.getElementById('customPopup');
+        popupElement.textContent = message;
+        popupElement.style.display = 'block';
+        setTimeout(() => {
+            popupElement.style.display = 'none';
+        }, 3000);
+    }
 function onFormSubmit() {
     const isValid = validateForm();
     if (isValid) {
@@ -583,56 +686,13 @@ function onFormSubmit() {
 }
 
 
-
-// function TourvalidateForm() {
-//     let name = document.getElementById('name');
-//     let email = document.getElementById('email');
-//     let destination = document.getElementById('select1');
-//     let message = document.getElementById('message');
-//     let date = document.getElementById('date');
-
-//     if (name.value.trim() === '' || 
-//         email.value.trim() === '' || 
-//         message.value.trim() === '' ||
-//         date.value.trim() === '' ||undefined
-//         ) 
-//         {
-        
-//         alert('Please fill the all  fields.');
-//         return false;
-//     } else {
-//         showThankYouPopup();
-//         return true;
-//     }
-// }
-
-function showError(input, errorMessage) {
-       let parent = input.parentElement;
-       let errorElement = parent.querySelector('.error-message');
-
-            if (!errorElement) {
-                errorElement = document.createElement('div');
-                errorElement.className = 'error-message';
-                parent.appendChild(errorElement);
-            }
-
-            errorElement.innerText = errorMessage;
-        }
- function hideError(input) {
-     let parent = input.parentElement;
-     let errorElement = parent.querySelector('.error-message');
-            if (errorElement) {
-                errorElement.innerText = ''; 
-            }
-        }         
-
 function redirectToPayment(packageId) {
 console.log(`Redirecting to payment for package with ID: ${packageId}`);
 window.location.href = 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view';
 }
         
 const config = {
-  phoneNumber: '7895923294',
+  phoneNumber: '7895923295',
   apiEndpoint: `https://katchintours.swiftexwallet.com/api/package/get-all-package-open?phoneNumber=`,
   razorpayPaymentURL: 'https://pages.razorpay.com/pl_NACddW3NeDwSyX/view'
 };
@@ -661,7 +721,9 @@ function renderPackages(data) {
     return;
   }
 
- packages = data.packages.slice(0, defaultPackagesToShow); // Show only the first three packages
+//  packages = data.packages.slice(0, defaultPackagesToShow); 
+
+ packages = data.packages 
   packages.forEach((package) => {
     const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
     const packageElement = document.createElement('div');
@@ -730,93 +792,84 @@ function renderPackages(data) {
 
   //  if there are more packages to show
   if (data.packages.length > defaultPackagesToShow) {
-    const viewMoreButton = document.createElement('button');
-    viewMoreButton.className = 'viewMoreBtn';
-    viewMoreButton.innerText = 'View More';
-    viewMoreButton.addEventListener('click', function () {
-      container.innerHTML = ''; 
-      packages =  data.packages;
-      packages.forEach((package) => {
-        const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
-        const packageElement = document.createElement('div');
-        packageElement.className = 'col-lg-4 col-md-6';
-        const modalId = `descriptionModal${package._id}`;
+ 
+//     viewMoreButton.className = 'viewMoreBtn';
+//     viewMoreButton.innerText = 'View More';
+//     viewMoreButton.addEventListener('click', function () {
+//       container.innerHTML = ''; 
+//       packages =  data.packages;
+//       packages.forEach((package) => {
+//         const baseUrl = 'https://toursandtravel.s3.ap-south-1.amazonaws.com';
+//         const packageElement = document.createElement('div');
+//         packageElement.className = 'col-lg-4 col-md-6';
+//         const modalId = `descriptionModal${package._id}`;
 
-        packageElement.innerHTML = `
-      <div class="package-item h-100 position-relative">
-        <div class="overflow-hidden" style='height:300px'>
-          <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
-        </div>
-        <div class="d-flex border-bottom">
-   <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
-   <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
-   <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
- </div>
- <div class="text-center p-4">
- <h3 class="mb-0">${package.price} INR</h3>
- <div class="mb-3">
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-         <small class="fa fa-star text-primary"></small>
-     </div>
-     <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
+//         packageElement.innerHTML = `
+//       <div class="package-item h-100 position-relative">
+//         <div class="overflow-hidden" style='height:300px'>
+//           <img class="img-fluid fit_img"   src="${baseUrl}/${package.image}" alt="">
+//         </div>
+//         <div class="d-flex border-bottom">
+//    <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>${package.place}</small>
+//    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>${package.days} days</small>
+//    <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>${package.person} Person</small>
+//  </div>
+//  <div class="text-center p-4">
+//  <h3 class="mb-0">${package.price} INR</h3>
+//  <div class="mb-3">
+//          <small class="fa fa-star text-primary"></small>
+//          <small class="fa fa-star text-primary"></small>
+//          <small class="fa fa-star text-primary"></small>
+//          <small class="fa fa-star text-primary"></small>
+//          <small class="fa fa-star text-primary"></small>
+//      </div>
+//      <p class="mb-4" id="packageDescription">${package.description.substring(0, 250)}....</p>
 
-        <a class="btn btn-sm btn-primary px-3 border-end"
-          style="border-radius: 30px 0 0 30px;"
-          onclick="openModal('${modalId}', '${package._id}')">Read More</a>
-        <a class="btn btn-sm btn-primary px-3"
-          style="border-radius: 0 30px 30px 0;"
-          onclick="redirectToPayment('${package.id}')">Book Now</a>
+//         <a class="btn btn-sm btn-primary px-3 border-end"
+//           style="border-radius: 30px 0 0 30px;"
+//           onclick="openModal('${modalId}', '${package._id}')">Read More</a>
+//         <a class="btn btn-sm btn-primary px-3"
+//           style="border-radius: 0 30px 30px 0;"
+//           onclick="redirectToPayment('${package.id}')">Book Now</a>
           
-          <div id="${modalId}" class="modal_2" style="border: none;">
-                                <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
-                                <hr style="margin: 0 0;">
-                                <div class="modal-content_1" style="border:none;text-align: left;">
-                                    <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
-                                </div>
-      </div>
-    `;
+//           <div id="${modalId}" class="modal_2" style="border: none;">
+//                                 <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;"><span class="close-btn"  onclick="closeModal('${modalId}')" style="font-size: 30px;">&times;</span></div>
+//                                 <hr style="margin: 0 0;">
+//                                 <div class="modal-content_1" style="border:none;text-align: left;">
+//                                     <p>Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of culture and relaxation. Arrive at the modal content...Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of Discover the allure of Thailand with our package. From bustling Bangkok to serene beaches, experience the perfect blend of </p>
+//                                 </div>
+//       </div>
+//     `;
 
-        container.appendChild(packageElement);
-
-
-        const modalElement = document.createElement('div');
-//   modalElement.id = `${modalId}`;
-  modalElement.className = 'modal_2';
-  modalElement.style.border = 'none';
-
-  modalElement.innerHTML = `
-    <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
-        <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
-    </div>
-    <hr style="margin: 0 0;">
-    <div class="modal-content_1" style="border:none; text-align: left;">
-      <p>${package.description}</p>
-    </div>
-  `;
+//         container.appendChild(packageElement);
 
 
-  container.appendChild(modalElement);
+//         const modalElement = document.createElement('div');
+// //   modalElement.id = `${modalId}`;
+//   modalElement.className = 'modal_2';
+//   modalElement.style.border = 'none';
 
-      });
-    });
+//   modalElement.innerHTML = `
+//     <div class="text-lg-end" style="width: 100%; padding-right: 10px; cursor: pointer;">
+//         <span class="close-btn" onclick="closeModal('${modalId}')">&times;</span>
+//     </div>
+//     <hr style="margin: 0 0;">
+//     <div class="modal-content_1" style="border:none; text-align: left;">
+//       <p>${package.description}</p>
+//     </div>
+//   `;
 
-    container.appendChild(viewMoreButton);
+
+//   container.appendChild(modalElement);
+
+//       });
+//     });
+
+    // container.appendChild(viewMoreButton);
   }
 }
 
 
-// function openModal(modalId, content) {
-//   const modal = document.getElementById(modalId);
-//   if (modal) {
-//     console.log(modal);
-//     modal.style.display = 'block';
-//   } else {
-//     console.error(`Modal element with ID '${modalId}' not found.`);
-//   }
-// }
 function openModal(modalId, packageId) {
   const modal = document.getElementById(modalId);
 
@@ -862,6 +915,7 @@ function hideThankYouPopup() {
       document.getElementById('customModal').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
     }
+
 
 </script>
 </body>
