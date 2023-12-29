@@ -3,10 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tour and Travels
-
-
-</title>
+    <title>Tour and Travels</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -33,60 +30,82 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+      .pagination{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .dtHorizontalExampleWrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+#dtHorizontalExample th, td {
+  white-space: nowrap;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+ bottom: .5em;
+}
+    </style>
 </head>
 
 <body>
 
- <section>
-  <div class="container-fluid">
-   <div class="row p-4 ">
-    <div class="col-12">
-    <div class=" p-3" style="border: 2px solid rgb(112, 112, 112); border-radius: 20px;">
-      <h2>Travel Package Reservation Information</h2>
-    
-    </div>
+    <section >
+        <div class="container-fluid">
+            <div class="row pt-4 p-1 ">
+                <div class="col-12">
+                    <div class=" p-3 text-cener" style="border: 2px solid rgb(112, 112, 112); border-radius: 12px;">
+                        <h2 class="text-center">Travel Package Reservation Information</h2>
+                    </div>
 
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Mobile</th>
-          <th scope="col">destinatio</th>
-          <th scope="col">Email</th>
-          <th scope="col">Date</th>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-   </div>
-  </div>
- </section>
- <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/wow/wow.min.js"></script>
+                    <div style="overflow-x: scroll;">
+                    <table id="dtHorizontalExample" class="table table-striped table-bordered table-sm mt-5" 
+                    width="100%" >
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">Destination</th> <!-- Fix the typo in the column name -->
+                                <th scope="col">Email</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination" id="pagination"></ul>
+                                    </nav>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
@@ -99,42 +118,21 @@
 
     <script>
 
-// async function getAllbookedform() {
-//   const apiUrl = 'https://katchintours.swiftexwallet.com/api/form/get-form';
+// $(document).ready(function () {
+//   $('#dtHorizontalExample').DataTable({
+//     "scrollX": true
+//   });
+//   $('.dataTables_length').addClass('bs-select');
+// });
+        async function fetchData() {
+          const apiUrl = 'https://katchintours.swiftexwallet.com/api/form/get-form';
+    const authToken = localStorage.getItem('token');
 
-//   try {
-//     const authToken = localStorage.getItem('token');
-
-//     const response = await fetch(apiUrl, {
-//       method: 'GET',
-//       headers: {
-//         Authorization: `Bearer ${authToken}`,
-//         // Add any other headers if needed
-//       },
-//     });
-
-//     if (!response.ok) {
-//       console.error(`Error: ${response.status} - ${response.statusText}`);
-//       throw new Error('Failed to fetch data');
-//     }
-
-//     const data = await response.json();
-//     console.log(data); // or process the data in some way
-
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-
-async function getAllbookedform() {
-const apiUrl = 'https://katchintours.swiftexwallet.com/api/form/get-form';
-// const authToken = localStorage.getItem('token');
-const authToken =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTgxNzVkMjliMDlmMTZkMTFiODY1MzYiLCJyb2xlIjowLCJwaG9uZU51bWJlciI6Nzg5NTkyMzI5NSwiaWF0IjoxNzAzMDU0NTkwfQ.B2OStZdl41JTgABlA_y07xhVsYA6I65jfmc33JP-xGU"
-   try{
+    try {
         if (!authToken) {
             throw new Error('Authentication token not found');
         }
+
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
@@ -144,53 +142,84 @@ const authToken =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTgxNzVkMjl
 
         if (response.ok) {
             const data = await response.json();
-            console.log('Package data:', data);
-}
-   }catch(error){
-     console.log(error)
-   }
-  
-  }
+            return data;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+        }
 
-  getAllbookedform();
+        async function getAllbookedform() {
+            const data = await fetchData();
 
-// const getAllbookedformRequest = {s
-//   name: 'https://katchintours.swiftexwallet.com/api/form/get-form',
-//   authToken :localStorage.getItem('token'),
-//   request: {
-//     method: 'GET',
-//     header: {
-//       Authorization: `Bearer ${authToken}`,
-//     },
-//     url: 'https://katchintours.swiftexwallet.com/api/form/get-form',
-//   },
-//   response: [],
-// };
+            if (data && data.form) {
+                console.log('Package data:', data.form);
+                const formsPerPage = 10;
+                const totalPages = Math.ceil(data.form.length / formsPerPage);
+                displayForms(data.form, formsPerPage, 1);
+                renderPagination(totalPages, data.form, 1);
+            }
+        }
 
-// async function getAllbookedform() {
-//   try {
-//     const { name, request } = getAllbookedformRequest;
-//     const response = await fetch(request.url, {
-//       method: request.method,
-//       headers: request.header,
-//     });
+        function displayForms(data, formsPerPage, currentPage) {
+            const tableBody = document.getElementById('tableBody');
 
-//     if (!response.ok) {
-//       console.error(`Error: ${response.status} - ${response.statusText}`);
-//       throw new Error('Failed to fetch data');
-//     }
+            tableBody.innerHTML = '';
 
-//     const data = await response.json();
-//     console.log(data); 
+            const startIndex = (currentPage - 1) * formsPerPage;
+            const endIndex = startIndex + formsPerPage;
 
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+            for (let i = startIndex; i < endIndex && i < data.length; i++) {
+                const form = data[i];
+                const formattedDate = new Date(form.cDate).toLocaleDateString();
+                const row = `<tr>
+                     <td>${form.cName}</td>
+                     <td>+${form.cPhone}</td>
+                     <td>${form.cDestination}</td>
+                     <td>${form.cEmail}</td>
+                     <td>${formattedDate}</td>
+                  </tr>`;
+                tableBody.innerHTML += row;
+            }
+        }
 
-// getAllbookedform()
+   
+        function renderPagination(totalPages, data, currentPage) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
 
+            const maxPageNumbers = 5;
 
+            let startPage = Math.max(currentPage - Math.floor(maxPageNumbers / 2), 1);
+            let endPage = Math.min(startPage + maxPageNumbers - 1, totalPages);
+
+            if (endPage - startPage + 1 < maxPageNumbers) {
+                startPage = Math.max(endPage - maxPageNumbers + 1, 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                li.classList.add('page-item');
+                const a = document.createElement('a');
+                a.classList.add('page-link');
+                a.href = '#';
+                a.textContent = i;
+                a.addEventListener('click', function () {
+                    const clickedPage = parseInt(this.textContent);
+                    displayForms(data, 10, clickedPage);
+                    renderPagination(totalPages, data, clickedPage);
+                });
+
+                if (i === currentPage) {
+                    li.classList.add('active');
+                }
+
+                li.appendChild(a);
+                pagination.appendChild(li);
+            }
+        }
+        
+        getAllbookedform();
     </script>
 </body>
 
