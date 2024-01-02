@@ -294,6 +294,10 @@ width: 90%;
 
 
 function login() {
+    // Show loader
+    document.getElementById('spinner').classList.add('show');
+
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
   // const name = document.getElementById('name' ).value;
@@ -339,12 +343,16 @@ function login() {
     .then(response => response.json())
 .then(data => {
     if (data.error) {
+      document.getElementById('spinner').classList.remove('show');
+
         console.error('Login failed:', data.error);
          displayPopup('invalid Cerdanitals')
         // alert('invalid Cerdanitals');
         // displayErrorMessage()
       
     } else {
+      document.getElementById('spinner').classList.remove('show');
+
         console.log('Login successful:', data);
         localStorage.setItem('token', data.token);
         document.getElementById("loginContainer").style.display = "none";
@@ -378,6 +386,7 @@ function displayPopupsuccess(message) {
 
 async function uploadPackage(formData) {
         const url = "https://katchintours.swiftexwallet.com/api/package/upload-package";
+        document.getElementById('spinner').classList.add('show');
 
         try {
             const authToken = localStorage.getItem('token');
@@ -393,8 +402,11 @@ async function uploadPackage(formData) {
                     'Authorization': `Bearer ${authToken}`,
                 },
             });
-
+                 
             const data = await response.json();
+            document.getElementById('spinner').classList.remove('show');
+
+
             displayPopupsuccess('package uploade successfully')
             // alert('package uploade successfully')
             closePackageForm()
@@ -407,6 +419,7 @@ async function uploadPackage(formData) {
             const place = document.getElementById('place').value =''
             getPackageData() 
         } catch (error) {
+          document.getElementById('spinner').classList.remove('show');
             alert('somthing went wrong please try again after some time.')
             console.error('Error uploading package:', error);
         }
@@ -508,6 +521,7 @@ let packages;
 async function getPackageData() {
 const apiUrl = "https://katchintours.swiftexwallet.com/api/package/get-all-package";
 const authToken = localStorage.getItem('token');
+document.getElementById('spinner').classList.add('show');
     try {
         if (!authToken) {
             throw new Error('Authentication token not found');
@@ -520,6 +534,7 @@ const authToken = localStorage.getItem('token');
         });
 
         if (response.ok) {
+          document.getElementById('spinner').classList.remove('show');
             const data = await response.json();
             console.log('Package data:', data);
 
@@ -658,10 +673,12 @@ else {
     }
   }    
    else{
+            document.getElementById('spinner').classList.remove('show');
             throw new Error(`Failed to fetch package data. Status: ${response.status}`);
    }
     }
      catch (error) {
+      document.getElementById('spinner').classList.remove('show');
         console.error('Error:', error.message);
     }
 }
@@ -673,6 +690,7 @@ async function deletePackage(packageId) {
   }
 
   const url = "https://katchintours.swiftexwallet.com/api/package/delete-package";
+  document.getElementById('spinner').classList.add('show');
 //   const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcxYmZjM2FlZjhlMzVlZDYxYmI5OTgiLCJyb2xlIjowLCJwaG9uZU51bWJlciI6OTU1NTI1NTMzNCwiaWF0IjoxNzAxOTUzNjk2fQ.k0KNcoV2NntflkVrAMV8vGHIMfXmew9XE8x2ZIJd6zg';
 const authToken = localStorage.getItem('token');
   try {
@@ -693,9 +711,11 @@ const authToken = localStorage.getItem('token');
     });
 
     const data = await response.json();
+    document.getElementById('spinner').classList.remove('show');
     getPackageData()
     console.log(data);
   } catch (error) {
+    document.getElementById('spinner').classList.remove('show');
     console.error('Error deleting package:', error);
   }
 }

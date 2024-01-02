@@ -248,7 +248,6 @@ function displayErrorMessage(fieldId, message) {
     }
 }
 function displayPopup(message) {
-  console.log("hello ")
         const popupElement = document.getElementById('customPopup');
         popupElement.textContent = message;
         popupElement.style.display = 'block';
@@ -341,7 +340,7 @@ function displayPopup(message) {
                 email: email,
                 password: password,
             };
-
+            document.getElementById('spinner').classList.add('show');
             const apiUrl = "https://katchintours.swiftexwallet.com/api/signin";
 
             fetch(apiUrl, {
@@ -354,12 +353,14 @@ function displayPopup(message) {
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
+                  document.getElementById('spinner').classList.remove('show');
                     console.error('Login failed:', data.error);
                     displayPopup('Invalid Credentials')
                     emailInput.style.borderColor = 'red';
                     passwordInput.style.borderColor = 'red';
                     toggleButtonState(false);
                 } else {
+                  document.getElementById('spinner').classList.remove('show');
                     console.log('Login successful:', data);
                     localStorage.setItem('token', data.token);
                     document.getElementById("loginContainer").style.display = "none";
@@ -370,6 +371,7 @@ function displayPopup(message) {
                 }
             })
             .catch(handleApiError);
+            document.getElementById('spinner').classList.remove('show');
         }
         document.getElementById('email').addEventListener('focus', handleInputFocus);
         document.getElementById('email').addEventListener('blur', handleInputBlur);
@@ -429,9 +431,11 @@ async function registerUser() {
         const apiUrl = "https://katchintours.swiftexwallet.com/api/signup";
 
         const authToken = localStorage.getItem('token');
+        document.getElementById('spinner').classList.add('show');
 
         if (!authToken) {
             throw new Error('Authentication token not found in local storage');
+            document.getElementById('spinner').classList.remove('show');
         }
 
         const response = await fetch(apiUrl, {
@@ -448,17 +452,20 @@ async function registerUser() {
         if (data.error) {
    
     if (data.error.password) {
+      document.getElementById('spinner').classList.remove('show');
         console.error('Password error:', data.error.password);
         displayPopup2(data.error.password)
      
     }
 
     if (data.error.name) {
+      document.getElementById('spinner').classList.remove('show');
         console.error('Name error:', data.error.name);
         displayPopup2(data.error.name)
     }
 
     if (data.error.email) {
+      document.getElementById('spinner').classList.remove('show');
       console.error('Name error:',data.error.email);
       displayPopup2(data.error.email)
       // displayPopupsuccess('email error')
@@ -467,7 +474,7 @@ async function registerUser() {
     }
   }
        else {
-
+        document.getElementById('spinner').classList.remove('show');
             // alert('user registred succsfully');
             displayPopupsuccess('user registred succsfully')
             getAllrgisterUser()
@@ -485,6 +492,7 @@ async function registerUser() {
       
 
     } catch (error) {
+      document.getElementById('spinner').classList.remove('show');
         console.error('Error:', error.message);
     }
 }
@@ -505,6 +513,7 @@ closeFormContainer.style.display = 'none';
 }
 
 async function getAllrgisterUser() {
+  document.getElementById('spinner').classList.add('show');
   const apiUrl = 'https://katchintours.swiftexwallet.com/api/user/all-user';
   const authToken = localStorage.getItem('token');
 
@@ -521,11 +530,13 @@ async function getAllrgisterUser() {
     });
 
     if (response.ok) {
+      document.getElementById('spinner').classList.remove('show');
       const data = await response.json();
     //   const users = data.Users
       updateTable(data.Users);
     }
   } catch (error) {
+    document.getElementById('spinner').classList.remove('show');
     console.error(error);
   }
 }
@@ -553,6 +564,7 @@ Remove-User</button></td>
 
 
 async function DeleteUser(userId) {
+  document.getElementById('spinner').classList.add('show');
     const apiUrl = 'https://katchintours.swiftexwallet.com/api/user/delete-user'; 
     const authToken = localStorage.getItem('token');
 
@@ -570,12 +582,14 @@ async function DeleteUser(userId) {
         });
 
         if (!response.ok) {
+          document.getElementById('spinner').classList.remove('show');
             throw new Error(`Error deleting user: ${response.status} - ${response.statusText}`);
         }
          displayPopupsuccess('User deleted successfully')
         console.log('User deleted successfully');
         getAllrgisterUser()
     } catch (error) {
+      document.getElementById('spinner').classList.remove('show');
         console.error('Error:', error.message);
     }
 }
