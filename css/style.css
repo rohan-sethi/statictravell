@@ -171,12 +171,21 @@
 
 
 /*** Hero Header ***/
-.hero-header {
+.hero-header{
+    height: 100vh;
     background: linear-gradient(rgba(20, 20, 31, .7), rgba(20, 20, 31, .7)), url(../img/bck-main.webp);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.hero-header_1{
+    background: linear-gradient(rgba(20, 20, 31, .7), rgba(20, 20, 31, .7));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 .breadcrumb-item + .breadcrumb-item::before {
     color: rgba(255, 255, 255, .5);

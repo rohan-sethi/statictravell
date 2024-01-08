@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "fa5b67ca-50f1-46d2-a12f-731b9336090f",
+		"name": "tourandtravels",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24767825"
+	},
+	"item": [
+		{
+			"name": "https://katchintours.swiftexwallet.com/api/form/add-form",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n              \"cName\":\"name\",\n              \"cDate\":\"2024-12-22\",\n              \"cDesc\":\"req body desc\",\n              \"cDestination\":\"req body cDestination\",\n              \"cEmail\":\"test@test.com\",\n              \"cPhone\":\"+919555255334\",\n              \"travelPhone\":\"9555255334\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://katchintours.swiftexwallet.com/api/form/add-form"
+				
+			},
+			"response": []
+		},
+
+		{
+			"name": "https://katchintours.swiftexwallet.com/api/package/get-all-package",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTcxYmZjM2FlZjhlMzVlZDYxYmI5OTgiLCJyb2xlIjowLCJwaG9uZU51bWJlciI6OTU1NTI1NTMzNCwiaWF0IjoxNzAxOTUzNjk2fQ.k0KNcoV2NntflkVrAMV8vGHIMfXmew9XE8x2ZIJd6zg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/package/get-all-package"
+			},
+			"response": []
+		},
+		{
+			"name": "https://katchintours.swiftexwallet.com/api/package/delete-package",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pId\":\"657091fbedb968508765e032\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://katchintours.swiftexwallet.com/api/package/delete-package"
+			},
+			"response": []
+		},
+	
+		{
+			"name": "https://katchintours.swiftexwallet.com/api/package/upload-package",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "description",
+							"value": "sfszzzzferwtertg",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/rohan/Documents/swiftEx.png"
+						},
+						{
+							"key": "days",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "person",
+							"value": "6",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://katchintours.swiftexwallet.com/api/package/upload-package"
+			},
+			"response": []
+		},
+		{
+			"name": "https://katchintours.swiftexwallet.com/api/signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n              \"name\":\"name\",\n              \"email\":\"rohan@katchintech.com\",\n              \"password\":\"test@123\",\n              \"phoneNumber\":\"req body cDestination\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://katchintours.swiftexwallet.com/api/signin"
+			},
+			"response": []
+		},
+
+		{
+			"name": "https://katchintours.swiftexwallet.com/api/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n              \"name\":\"name\",\n              \"email\":\"rohan@katchintech.com\",\n              \"password\":\"test@123\",\n              \"phoneNumber\":\"req body cDestination\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://katchintours.swiftexwallet.com/api/signup"
+			},
+			"response": []
+		}
+	]
+}

@@ -90,6 +90,20 @@
         }
     });
 
+    $(document).ready(function(){
+        $(".fancybox").fancybox({
+              openEffect: "none",
+              closeEffect: "none"
+          });
+          
+          $(".zoom").hover(function(){
+              
+              $(this).addClass('transition');
+          }, function(){
+              
+              $(this).removeClass('transition');
+          });
+      });
     
 })(jQuery);
 
@@ -237,6 +251,9 @@ window.onclick = function(event) {
      //$('datetimepicker').datetimepicker('destroy');
     
 
+     function redirectTogallery() {
+        window.location.href = "/gallery.html"; 
+    }
 
 
 

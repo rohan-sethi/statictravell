@@ -55,7 +55,48 @@
             border-radius: 5px;
             z-index: 999;
         }
+        .over_lay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+    }
 
+    video {
+        z-index: 0;
+    }
+  
+    .vid_contant{
+        position: absolute; 
+        top: 50%; 
+        left: 40%; 
+        transform: translate(-20%, -50%); 
+        text-align: center; 
+        color: #ffffff; z-index: 10;
+    }
+
+    @media (max-width:600px) {
+       
+    .vid_contant{
+        left: 10%; 
+        transform: translate(-5%, -50%); 
+    }
+    } 
+
+    @media (min-width:900px) {
+        .vid_contant{ 
+        left: 20%; 
+        transform: translate(-10%, -50%); 
+    }
+    }
+/* @media (min-width:480px)
+@media (min-width:600px)  
+@media (min-width:801px) 
+@media (min-width:1025px) 
+@media (min-width:1281px)  */
     </style>
 
         <!-- JS -->
@@ -124,6 +165,7 @@
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Services</a>
                     <a href="package.html" class="nav-item nav-link">Packages</a>
+                    <a href="gallery.html" class="nav-item nav-link">Snapshot</a>
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
@@ -139,25 +181,92 @@
                 <!-- <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Register</a> -->
             </div>
         </nav>
-
-        <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <!-- <div class="container-fluid bg-primary py-5 mb-5 hero-header">
             <div class="container py-5">
                 <div class="row justify-content-center py-5">
                     <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                  
+                      
+                        
                         <h1 class="display-3 text-white mb-3 animated slideInDown">Enjoy Your Vacation With Us</h1>
                         <p class="fs-4 text-white mb-4 animated slideInDown">Indulge in Tranquility: Elevate Your Vacation Experience with Our Exclusive Destinations and Unparalleled Hospitality!</p>
                         <div class="col-md-12 text-center animate-box fadeInUp animated">
                             <p><a class="btn btn-primary btn-outline btn-lg" href="package.html#pack">See All Offers <i class="fa fa-angle-right"></i></a></p>
                         </div>
-                        <!-- <div class="position-relative w-75 mx-auto animated slideInDown">
-                            <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Thailand">
-                            <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style="margin-top: 7px;">Search</button>
-                        </div>
-                    </div> -->
+                       
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+         -->
+
+
+         <!-- <div class="container-fluid p-0 position-relative heelo" >
+            <div class="row p-0">
+           <div class="col-12 p-0">
+            <video autoplay muted loop class="w-100 heelo" id="#myVideo" style="height: 100%;" >
+                <source src="img/mountain.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+             
+           </div>
+            </div>
+        
+         </div>
+         
+         <div class="banner">
+            <video autoplay loop muted plays-inline>
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+        </div> -->
+
+
+
+        <!-- <div class="container-fluid position-relative bg-primary py-0 px-0 mb-5 hero-header_1 " style="border:2px solid red;">
+            <div class="ontainer-fluid  px-0 py-0 position-relative h-100" style="border:2px solid yellow">
+                <video class="w-100 h-100" src="img/mountain.mp4" autoplay loop playsinline muted style="border: 2px solid orangered;"></video>
+                <div class="over_lay position-absolute top-0 start-0 w-100 h-100" style="border:2px solid black"></div>
+                <div class="row justify-content-center p-0 position-relative">
+                    <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center position-ab" style="z-index: 2;">
+                        <h1 class="display-3 text-white mb-3 animated slideInDown">Enjoy Your Vacation With Us</h1>
+                        <p class="fs-4 text-white mb-4 animated slideInDown">Indulge in Tranquility: Elevate Your Vacation Experience with Our Exclusive Destinations and Unparalleled Hospitality!</p>
+                        <div class="col-md-12 text-center animate-box fadeInUp animated">
+                            <p><a class="btn btn-primary btn-outline btn-lg" href="package.html#pack">See All Offers <i class="fa fa-angle-right"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+
+        <div class="container-fluid position-relative bg-primary py-0 px-0 mb-5 hero-header_1" >
+            <div class="container-fluid px-0 py-0 position-relative h-100" >
+
+                <video class="w-100 h-100 p-0 m-0" src="img/mountain.mp4" autoplay loop playsinline muted style=" object-fit: cover; min-height: 100vh;"></video>
+                <div class="vid_contant">
+                    <div class="container" >
+                        <div class="row justify-content-center py-5" >
+                            <div class="col-lg-12 pt-lg-5 mt-lg-5 text-center">
+                                <h1 class="display-3 text-white mb-3 animated slideInDown">Enjoy Your Vacation With Us</h1>
+                                <p class="fs-4 text-white mb-4 animated slideInDown">Indulge in Tranquility: Elevate Your Vacation Experience with Our Exclusive Destinations and Unparalleled Hospitality!</p>
+                                <div class="col-md-12 text-center animate-box fadeInUp animated">
+                                    <p><a class="btn btn-primary btn-outline btn-lg" href="package.html#pack">See All Offers <i class="fa fa-angle-right"></i></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="over_lay position-absolute top-0 start-0 w-100 h-100">
+                </div>
+            </div>
+        </div>
+        
+        
+         
+
+
     <!-- Navbar & Hero End -->
 
 
@@ -763,17 +872,17 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>4-A,Sector 19, Dwarka,New Delhi</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 9555255334/p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 9555255334</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@katchintech.com</p>
               
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
-                        <div class="col-4">
+                        <div class="col-4" onclick="redirectTogallery()">
                             <img class="img-fluid bg-light p-1" src="img/package-1.jpg" alt="">
                         </div>
-                        <div class="col-4">
+                        <div class="col-4" onclick="redirectTogallery()">
                             <img class="img-fluid bg-light p-1" src="img/package-2.jpg" alt="">
                         </div>
                         <div class="col-4">
@@ -943,19 +1052,19 @@ function validateForm() {
 
         if (name === '') {
             // displayPopup('Please enter your name.', 'name');
-            displayErrorMessage('name', '! Please enter your name.')
+            displayErrorMessage('name', 'Please enter your name.')
             return false;
         }
 
         if (email === '') {
             // displayPopup('Please enter your email.', 'email');
-            displayErrorMessage('email','! Please enter your email.' );
+            displayErrorMessage('email','Please enter your email.' );
             return false;
         }
 
         if (mnumber  === '') {
             // displayPopup('Please enter your mobilenumber .', 'mnuber');
-            displayErrorMessage('mnuber','! Please enter your mobilenumber .');
+            displayErrorMessage('mnuber','Please enter your mobilenumber .');
             return false;
         }
 
@@ -965,27 +1074,27 @@ function validateForm() {
 
         if (!trnumberPattern.test(mnumber)) {
             // displayPopup('Please enter a valid 10-digit integer for the Travel Phone Number.');
-            displayErrorMessage('number','! Please enter a valid 10-digit integer for the Travel Phone Number.')
+            displayErrorMessage('number','Please enter a valid 10-digit integer for the Travel Phone Number.')
             return false;
         }
 
 
         if (date  === '') {
             // displayPopup ('date','Please enter  date .'); 
-            displayErrorMessage('date', '! Please enter  date .',);
+            displayErrorMessage('date', 'Please enter  date .',);
 
             return false;
         }
         if (destination  === '') {
             // displayPopup('Please enter your destination', 'destination');
-            displayErrorMessage('destination',' ! Please enter your destination');
+            displayErrorMessage('destination','Please enter your destination');
             return false;
         }
 
             
         if ( message === '') {
             // displayPopup('Please enter your message.', 'message');
-            displayErrorMessage('message','! Please enter your message.', );
+            displayErrorMessage('message','Please enter your message.', );
             return false;
         }
         
