@@ -254,7 +254,7 @@ window.onclick = function(event) {
     
 
      function redirectTogallery() {
-        window.location.href = "/gallery.html"; 
+        window.location.href = "snapshot.html"; 
     }
 
 
