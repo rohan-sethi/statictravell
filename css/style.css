@@ -172,7 +172,7 @@
 
 /*** Hero Header ***/
 .hero-header{
-    height: 100vh;
+
     background: linear-gradient(rgba(20, 20, 31, .7), rgba(20, 20, 31, .7)), url(../img/bck-main.webp);
     background-position: center center;
     background-repeat: no-repeat;
